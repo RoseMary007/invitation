@@ -24,7 +24,7 @@ const WEDDING = {
 
   date: "2026-09-27T03:00:00",
 
-  dateText: "Saturday, 27th September 2026",
+  dateText: "Sunday, 27th September 2026",
 
   church: {
     name: "St. Mary's Forane Church",
@@ -1009,7 +1009,7 @@ function Gallery() {
         </span>
 
         <span>
-          A & E
+          V & A
         </span>
 
       </div>
@@ -1142,6 +1142,92 @@ function Venues() {
 
         </div>
 
+       {/* ============================================================
+    EVENT INFORMATION BOXES
+    ============================================================ */}
+
+<div className="event-info-boxes">
+
+  {/* ================= BETROTHAL ================= */}
+
+  <Reveal>
+
+    <div className="event-info-box">
+
+      <p className="event-info-type">
+        THE BETROTHAL
+      </p>
+
+      <p className="event-info-day">
+        Sunday
+      </p>
+
+      <p className="event-info-date">
+        27 September 2026
+      </p>
+
+      <p className="event-info-time">
+        03:00 PM
+      </p>
+
+      <div className="event-info-line" />
+
+      <p className="event-info-venue">
+        St Mary's Forane Chruch
+      </p>
+
+      <p className="event-info-location">
+        Korraty, Trissur
+      </p>
+
+    </div>
+
+  </Reveal>
+
+
+  {/* ================= RECEPTION ================= */}
+
+  <Reveal delay={0.15}>
+
+    <div className="event-info-box">
+
+      <p className="event-info-type">
+        RECEPTION
+      </p>
+
+      <p className="event-info-day">
+        Sunday
+      </p>
+
+      <p className="event-info-date">
+        27 September 2026
+      </p>
+
+      <p className="event-info-time">
+        06:30 PM
+      </p>
+
+      <div className="event-info-line" />
+
+      <p className="event-info-venue">
+        Heartland convention centre
+      </p>
+
+      <p className="event-info-location">
+        Chalakudy,Trissur
+      </p>
+
+    </div>
+
+  </Reveal>
+
+</div>
+
+
+{/* ============================================================
+    YOUR EXISTING VENUE CARDS — DO NOT CHANGE
+    ============================================================ */}
+
 
         <div className="venue-grid">
 
@@ -1200,6 +1286,9 @@ function Venues() {
 // ============================================================
 // DRESS CODE
 // ============================================================
+// ============================================================
+// DRESS CODE
+// ============================================================
 
 function DressCode() {
 
@@ -1210,12 +1299,21 @@ function DressCode() {
       className="dress-section"
     >
 
+      {/* BACKGROUND */}
+
       <div className="dress-photo" />
 
       <div className="dress-overlay" />
 
 
+      {/* CONTENT */}
+
       <div className="dress-content">
+
+
+        {/* ====================================================
+            SMALL TITLE
+            ==================================================== */}
 
         <Reveal>
 
@@ -1226,6 +1324,10 @@ function DressCode() {
         </Reveal>
 
 
+        {/* ====================================================
+            MAIN TITLE
+            ==================================================== */}
+
         <Reveal delay={0.1}>
 
           <h2>
@@ -1235,12 +1337,20 @@ function DressCode() {
         </Reveal>
 
 
+        {/* ====================================================
+            DIVIDER
+            ==================================================== */}
+
         <Reveal delay={0.2}>
 
           <div className="dress-line" />
 
         </Reveal>
 
+
+        {/* ====================================================
+            DRESS STYLE
+            ==================================================== */}
 
         <Reveal delay={0.3}>
 
@@ -1249,11 +1359,15 @@ function DressCode() {
           </p>
 
           <p className="dress-subtitle">
-            traditional attire in loud colors
+            traditional attire in rich, dark tones
           </p>
 
         </Reveal>
 
+
+        {/* ====================================================
+            DESCRIPTION
+            ==================================================== */}
 
         <Reveal delay={0.4}>
 
@@ -1266,6 +1380,38 @@ function DressCode() {
           </p>
 
         </Reveal>
+
+
+        {/* ====================================================
+            DRESS CODE IMAGE
+            ==================================================== */}
+
+        <Reveal delay={0.5}>
+
+          <div className="dress-code-image">
+
+            <img
+              src="/images/dress-code.jpg"
+              alt="Traditional wedding dress code"
+            />
+
+          </div>
+
+        </Reveal>
+
+
+        {/* ====================================================
+            BOTTOM LABEL
+            ==================================================== */}
+
+        <Reveal delay={0.6}>
+
+          <p className="dress-code-note">
+            DARK • ELEGANT • TRADITIONAL
+          </p>
+
+        </Reveal>
+
 
       </div>
 
@@ -1392,10 +1538,17 @@ export default function App() {
 
       <PersonSection
         image="/images/groom.jpg"
-        number="01"
-        role="THE GROOM"
+        number="I am"
         name={WEDDING.groom}
         align="left"
+      />
+
+
+      <PersonSection
+        image="/images/bride.jpg"
+        number="AND I am"
+        name={WEDDING.bride}
+        align="right"
       />
 
       {/* COUNTDOWN */}
@@ -1406,13 +1559,7 @@ export default function App() {
 
       <Gallery />
 
-      <PersonSection
-        image="/images/bride.jpg"
-        number="02"
-        role="THE BRIDE"
-        name={WEDDING.bride}
-        align="right"
-      />
+      
 
       <Venues />
 
