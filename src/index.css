@@ -753,7 +753,7 @@ img {
 
 .name-reveal {
 
-  overflow: hidden;
+  overflow: visible;
 
   margin-top: 8px;
 
