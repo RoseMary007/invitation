@@ -1,358 +1,1427 @@
-import React, { useRef, useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import {
+  motion,
+  useScroll,
+  useTransform
+} from "framer-motion";
 
-// ---------------------------------------------------------------------------
-// EDIT ME — swap in the real names, dates, venues, and parents' names.
-// Order: Engagement -> Bollywood Night -> Wedding.
-// ---------------------------------------------------------------------------
-const COUPLE = { partnerA: "Varghese", partnerB: "Aleena" };
-const PARENTS = {
-  groom: "Mr. Jose Ukken & Mrs. Shoba Jose",
-  bride: "Mr. & Mrs. Babu Varghese",
+import {
+  ArrowDown,
+  ArrowUpRight,
+  MapPin
+} from "lucide-react";
+
+
+// ============================================================
+// WEDDING INFORMATION
+// ============================================================
+
+const WEDDING = {
+
+  groom: "VARGHESE J UKKEN",
+
+  bride: "ALEENA BABU",
+
+  date: "2026-09-27T03:00:00",
+
+  dateText: "Saturday, 27th September 2026",
+
+  church: {
+    name: "St. Mary's Forane Church",
+    address: "St. Mary's Forane Church, Koratty, Thrissur, Kerala, India, 680308",
+    map:
+      "https://www.google.com/maps/dir/9.8038172,76.6759214/St.+Mary's+Syro-Malabar+Church,+Koratty,+788W%2B6QJ,+Koratty,+Kerala+680308/@10.0341889,76.1815522,10z/data=!3m1!4b1!4m9!4m8!1m1!4e1!1m5!1m1!1s0x3b0803362e58aaa3:0x77abf233a79bd505!2m2!1d76.3467855!2d10.2652556?entry=ttu&g_ep=EgoyMDI2MDgyNi4wIKXMDSoASAFQAw%3D%3D"
+  },
+
+  reception: {
+    name: "Heartland Convention centre",
+    address: "Heartland Convention centre, chalakudy, Thrissur, Kerala, India, 680308",
+    map:
+      "https://www.google.com/maps/dir//Kizhakuden's+HeartLand+Convention+Centre,+Athirapilly+road,+Koodapuzha,+Chalakudy,+Kerala+680721/@9.8038172,76.6759214,14z/data=!4m8!4m7!1m0!1m5!1m1!1s0x3b08030ad038013d:0xf0b6ccf724a81644!2m2!1d76.3525474!2d10.3139921?entry=ttu&g_ep=EgoyMDI2MDgyNi4wIKXMDSoASAFQAw%3D%3D"
+  }
+
 };
 
-const SECTIONS = [
-  {
-    key: "engagement",
-    nav: "Engagement",
-    intro: "PLEASE JOIN US TO CELEBRATE THE ENGAGEMENT OF",
-    date: "Sunday, September 27, 2026",
-    swapNames: true, 
-    time: "3pm at chruch and 6:30pm at reception",
-    quote: "\u201CThis is my beloved, and this is my friend.\u201D — Song of Solomon 5:16",
-    ceremony: { label: "CEREMONY", name: "ST. MARY'S FORANE CHURCH", address: "Chalakudy, Kerala" },
-    reception: { label: "RECEPTION", name: "HEARTLAND CONVENTION CENTRE", address: "Chalakudy, Kerala" },
-    closing: "we invite you to share in our joy and celebrate with us",
-    dressing: "Dress code:Any solid colour",
-    theme: "dusk",
-  },
-  {
-    key: "bollywood",
-    nav: "Bollywood Night",
-    intro: "PLEASE JOIN THE GROOM'S FAMILY FOR THE  മധുരംവെപ്പ് CELEBRATION",
-    date: "Bollywood Night",
-    time: "WEDNESDAY, SEPTEMBER 30, 2026 · SIX IN THE EVENING",
-    quote: "Let the music find you, and don't stop till the last song fades.",
-    venue: { label: "VENUE", name: "GROOM'S RESIDENCE", address: "Chalakudy, Kerala" },
-    closing: "Dance floor opens for all",
-    dressing: "Dress code:Bollywood / Indian attire",
-    theme: "night",
-  },
-  {
-    key: "wedding",
-    nav: "Wedding",
-    intro: "PLEASE JOIN US TO CELEBRATE THE MARRIAGE OF",
-    date: "Sunday, October 4, 2026",
-    time: "AT THREE O'CLOCK IN THE AFTERNOON",
-    quote: "\u201CTherefore what God has joined together, let no one separate.\u201D — Mark 10:9",
-    ceremony: { label: "CEREMONY", name: "ST. MARY'S FORANE CHURCH", address: "Chalakudy, Kerala" },
-    reception: { label: "RECEPTION", name: "CIAL CONVENTION CENTRE", address: "Nedumbassery, Kerala" },
-    closing: "As our two lives blend into one, we look forward to celebrating with you",
-    dressing: "Dress code:Any pastel colour",
-    theme: "dawn",
-  },
-];
 
-// ---------------------------------------------------------------------------
+// ============================================================
+// ANIMATION SETTINGS
+// ============================================================
 
- function useBackgroundMusic() {
-  const [playing, setPlaying] = useState(false);
-  const audioRef = useRef(null);
+const revealTransition = {
+  duration: 1,
+  ease: [0.16, 1, 0.3, 1]
+};
 
-  useEffect(() => {
-    const audio = new Audio("/music.mp3");
-    audio.loop = true;
-    audio.volume = 0.35; // adjust 0–1 to taste
-    audioRef.current = audio;
-    return () => {
-      audio.pause();
-      audio.src = "";
-    };
-  }, []);
 
-  const toggle = () => {
-    const audio = audioRef.current;
-    if (!audio) return;
-    if (playing) {
-      audio.pause();
-    } else {
-      audio.play().catch(() => {});
+// ============================================================
+// REVEAL COMPONENT
+// ============================================================
+
+function Reveal({
+  children,
+  delay = 0,
+  direction = "up",
+  className = ""
+}) {
+
+  const initialPositions = {
+
+    up: {
+      y: 60,
+      x: 0
+    },
+
+    left: {
+      x: -70,
+      y: 0
+    },
+
+    right: {
+      x: 70,
+      y: 0
     }
-    setPlaying(!playing);
+
   };
 
-  return { playing, toggle, error: false };
-}
 
-function Backdrop({ theme }) {
-  if (theme === "dusk") {
-    return (
-      <div className="backdrop backdrop-dusk">
-        <div className="glow glow-a" />
-        <div className="glow glow-b" />
-        <div className="glow glow-c" />
-      </div>
-    );
-  }
-  if (theme === "night") {
-    return (
-      <div className="backdrop backdrop-night">
-        <div className="bokeh bokeh-1" />
-        <div className="bokeh bokeh-2" />
-        <div className="bokeh bokeh-3" />
-        <div className="bokeh bokeh-4" />
-        <div className="bokeh bokeh-5" />
-      </div>
-    );
-  }
   return (
-    <div className="backdrop backdrop-dawn">
-      <div className="bloom bloom-left" />
-      <div className="bloom bloom-right" />
-      <div className="horizon" />
-    </div>
+
+    <motion.div
+
+      className={className}
+
+      initial={{
+        opacity: 0,
+        ...initialPositions[direction]
+      }}
+
+      whileInView={{
+        opacity: 1,
+        x: 0,
+        y: 0
+      }}
+
+      viewport={{
+        once: true,
+        amount: 0.15
+      }}
+
+      transition={{
+        ...revealTransition,
+        delay
+      }}
+
+    >
+
+      {children}
+
+    </motion.div>
+
   );
+
 }
 
-function VenueBlock({ block }) {
-  return (
-    <div className="venue-block">
-      <p className="venue-label">{block.label}</p>
-      <p className="venue-name">{block.name}</p>
-      <p className="venue-address">{block.address}</p>
-    </div>
+
+// ============================================================
+// HERO
+// ============================================================
+
+function Hero() {
+
+  const { scrollYProgress } = useScroll();
+
+
+  const imageScale = useTransform(
+    scrollYProgress,
+    [0, 0.15],
+    [1, 1.14]
   );
-}
 
-function Section({ data, innerRef }) {
+
+  const imageY = useTransform(
+    scrollYProgress,
+    [0, 0.2],
+    ["0%", "8%"]
+  );
+
+
   return (
-    <section ref={innerRef} className={`panel theme-${data.theme}`} id={data.key}>
-      <Backdrop theme={data.theme} />
-      <div className="panel-card">
-        <p className="intro">{data.intro}</p>
 
-        {data.key !== "bollywood" ? (
-  <h2 className="names">
-    {data.swapNames ? COUPLE.partnerB : COUPLE.partnerA}
-    <span className="amp">&amp;</span>
-    {data.swapNames ? COUPLE.partnerA : COUPLE.partnerB}
-  </h2>
-) : (
-          <h2 className="names names-single">{data.date}</h2>
-        )}
+    <section
+      id="home"
+      className="hero-section"
+    >
 
-        {data.key !== "bollywood" && <p className="date-script">{data.date}</p>}
-        <p className="time-line">{data.time}</p>
+      {/* BACKGROUND PHOTO */}
 
-        <p className="quote">{data.quote}</p>
+      <motion.div
+        className="hero-photo"
 
-        <div className="venues">
-          {data.ceremony && <VenueBlock block={data.ceremony} />}
-          {data.reception && <VenueBlock block={data.reception} />}
-          {data.venue && <VenueBlock block={data.venue} />}
+        style={{
+          scale: imageScale,
+          y: imageY
+        }}
+      />
+
+
+      <div className="hero-dark" />
+
+
+      {/* NAVIGATION */}
+
+      <nav className="top-navigation">
+
+        <a
+          href="#home"
+          className="nav-monogram"
+        >
+          V <span>&</span> A
+        </a>
+
+
+        <div className="nav-menu">
+
+          <a href="#story">
+            STORY
+          </a>
+
+          <a href="#gallery">
+            GALLERY
+          </a>
+
+          <a href="#venues">
+            VENUE
+          </a>
+
         </div>
-        {data.dressing && <p  className="dressing">{data.dressing}  </p>}
 
-        <p className="closing">{data.closing}</p>
-      </div>
-    </section>
-  );
-}
-
-function Hero({ innerRef }) {
-  return (
-    <section ref={innerRef} className="panel theme-hero">
-      <div className="backdrop backdrop-hero" />
-      <div className="panel-card hero-card">
-        <p className="hero-kicker">TOGETHER WITH THEIR FAMILIES</p>
-        <p className="hero-parents">{PARENTS.groom}</p>
-        <p className="hero-and">and</p>
-        <p className="hero-parents">{PARENTS.bride}</p>
-        <p className="hero-request">
-          request the honour of your presence at the wedding celebrations of
-        </p>
-        <h1 className="hero-names">
-             <div style={{ display: 'flex', gap: '16px' }}>
-             
-    
-          {COUPLE.partnerA}
-          <span className="amp">&amp;</span>
-       
-          {COUPLE.partnerB}
-          </div>
-        </h1>
-        <p className="hero-scroll">Scroll to see each celebration</p>
-      </div>
-    </section>
-  );
-}
-
-export default function App() {
-  const { playing, toggle, error } = useBackgroundMusic();
-  const heroRef = useRef(null);
-  const refs = useRef(SECTIONS.map(() => React.createRef()));
-
-  const scrollTo = (i) => refs.current[i].current?.scrollIntoView({ behavior: "smooth" });
-
-  return (
-    <div className="wc-root">
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Parisienne&family=Cormorant+Garamond:ital@1&family=Jost:wght@300;400;500&display=swap');
-
-        * { box-sizing: border-box; }
-
-        .wc-root {
-          font-family: 'Jost', sans-serif;
-          scroll-snap-type: y proximity;
-          overflow-y: auto;
-          height: 100vh;
-          scroll-behavior: smooth;
-        }
-
-        .panel {
-          min-height: 100vh;
-          scroll-snap-align: start;
-          position: relative;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          overflow: hidden;
-          padding: 60px 24px;
-        }
-
-        .backdrop { position: absolute; inset: 0; z-index: 0; }
-
-        /* ---------- Hero: family invitation ---------- */
-        .backdrop-hero { background: linear-gradient(180deg, #F7F1E9 0%, #EFE4D2 100%); }
-        .theme-hero .panel-card, .theme-hero .panel-card * { color: #4A4038; }
-        .hero-card { max-width: 520px; }
-        .hero-kicker { font-size: 11px; letter-spacing: 0.28em; margin: 0 0 20px; opacity: 0.75; }
-        .hero-parents { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: clamp(18px, 2.4vw, 22px); margin: 4px 0; }
-        .hero-and { font-size: 11px; letter-spacing: 0.2em; margin: 6px 0; opacity: 0.6; }
-        .hero-request { font-size: 13px; letter-spacing: 0.05em; line-height: 1.7; margin: 24px 0 20px; opacity: 0.85; }
-        .hero-names { font-family: 'Parisienne', cursive; font-weight: 400; font-size: clamp(38px, 7vw, 64px); margin: 6px 0 26px; }
-        .hero-scroll { font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; opacity: 0.55; }
-
-        /* ---------- Engagement: candlelit dusk ---------- */
-        .backdrop-dusk { background: radial-gradient(120% 90% at 50% 30%, #3a3128 0%, #1e1712 70%, #14100c 100%); }
-        .backdrop-dusk .glow { position: absolute; border-radius: 50%; filter: blur(60px); opacity: 0.55; }
-        .glow-a { width: 280px; height: 280px; background: #C9A86A; top: 8%; left: 12%; }
-        .glow-b { width: 220px; height: 220px; background: #B8894F; bottom: 10%; right: 14%; }
-        .glow-c { width: 340px; height: 340px; background: #7A5A34; top: 40%; left: 60%; opacity: 0.3; }
-
-        /* ---------- Bollywood Night: warm bokeh party ---------- */
-        .backdrop-night { background: radial-gradient(120% 90% at 50% 40%, #35123a 0%, #1c0a26 65%, #10061c 100%); }
-        .backdrop-night .bokeh {
-          position: absolute; border-radius: 50%; filter: blur(2px);
-          animation: bokeh-drift 9s ease-in-out infinite;
-        }
-        .bokeh-1 { width: 18px; height: 18px; background: #E2A64C; top: 18%; left: 20%; animation-delay: 0s; }
-        .bokeh-2 { width: 12px; height: 12px; background: #E85D9E; top: 65%; left: 12%; animation-delay: 1.4s; }
-        .bokeh-3 { width: 22px; height: 22px; background: #E2A64C; top: 30%; left: 78%; animation-delay: 2.6s; }
-        .bokeh-4 { width: 14px; height: 14px; background: #7FD8D0; top: 75%; left: 70%; animation-delay: 0.8s; }
-        .bokeh-5 { width: 16px; height: 16px; background: #E85D9E; top: 45%; left: 50%; animation-delay: 3.4s; }
-        @keyframes bokeh-drift {
-          0%, 100% { transform: translateY(0); opacity: 0.55; filter: blur(2px); }
-          50% { transform: translateY(-16px); opacity: 1; filter: blur(0.5px); }
-        }
-
-        /* ---------- Wedding: soft dawn, floral + horizon ---------- */
-        .backdrop-dawn { background: linear-gradient(180deg, #EAF2EF 0%, #F7F1E9 55%, #EDE1CC 100%); }
-        .backdrop-dawn .horizon { position: absolute; left: 0; right: 0; top: 42%; height: 1px; background: rgba(58,50,46,0.12); }
-        .bloom { position: absolute; top: -60px; width: 260px; height: 260px; border-radius: 50%; filter: blur(50px); opacity: 0.5; }
-        .bloom-left { left: -60px; background: radial-gradient(circle, #F4CBD2 0%, #C9DCC3 70%, transparent 100%); }
-        .bloom-right { right: -60px; background: radial-gradient(circle, #EFD9B8 0%, #C9DCC3 70%, transparent 100%); }
-
-        .panel-card {
-          position: relative;
-          z-index: 1;
-          text-align: center;
-          max-width: 560px;
-        }
-
-        .intro { font-size: 12px; letter-spacing: 0.22em; font-weight: 400; margin: 0 0 26px; }
-
-        .names { font-family: 'Parisienne', cursive; font-weight: 400; font-size: clamp(34px, 6vw, 54px); line-height: 1.25; margin: 0 0 18px; }
-        .names-single { font-size: clamp(38px, 7vw, 62px); }
-        .amp { display: block; font-size: 0.5em; margin: 4px 0; opacity: 0.75; }
-
-        .date-script { font-family: 'Parisienne', cursive; font-size: clamp(20px, 3vw, 26px); margin: 0 0 10px; }
-        .time-line { font-size: 12px; letter-spacing: 0.14em; margin: 0 0 24px; opacity: 0.85; }
-
-        .quote {
-          font-family: 'Cormorant Garamond', serif;
-          font-style: italic;
-          font-size: clamp(14px, 1.8vw, 16.5px);
-          line-height: 1.6;
-          max-width: 40ch;
-          margin: 0 auto 30px;
-          opacity: 0.85;
-        }
-
-        .venues { display: flex; flex-direction: column; gap: 20px; margin-bottom: 28px; }
-        .venue-block { }
-        .venue-label { font-size: 10px; letter-spacing: 0.24em; margin: 0 0 6px; opacity: 0.55; }
-        .venue-name { font-size: 14px; letter-spacing: 0.08em; margin: 0 0 2px; font-weight: 500; }
-        .venue-address { font-size: 12.5px; letter-spacing: 0.04em; margin: 0; opacity: 0.75; }
-
-        .dressing { font-size: 12px; letter-spacing: 0.14em; margin: 0 0 24px; opacity: 0.85; }
-        .closing { font-family: 'Parisienne', cursive; font-size: clamp(18px, 2.4vw, 22px); margin: 0; opacity: 0.85; }
-
-        .theme-dusk .panel-card, .theme-dusk .panel-card * { color: #EDE3D3; }
-        .theme-night .panel-card, .theme-night .panel-card * { color: #F3E4EE; }
-        .theme-dawn .panel-card, .theme-dawn .panel-card * { color: #4A4038; }
-
-        .side-nav {
-          position: fixed; right: 24px; top: 50%; transform: translateY(-50%); z-index: 6;
-          display: flex; flex-direction: column; gap: 16px; align-items: flex-end;
-        }
-        .side-nav button { background: none; border: none; cursor: pointer; display: flex; align-items: center; gap: 10px; padding: 0; }
-        .side-nav-label { font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(120,110,100,0.9); opacity: 0; transition: opacity 0.2s ease; }
-        .side-nav button:hover .side-nav-label { opacity: 1; }
-        .side-nav-dot { width: 6px; height: 6px; border-radius: 50%; background: #B49361; opacity: 0.6; transition: opacity 0.2s ease, transform 0.2s ease; }
-        .side-nav button:hover .side-nav-dot { opacity: 1; transform: scale(1.3); }
-
-        .music-toggle {
-          position: fixed; bottom: 24px; left: 24px; z-index: 6;
-          display: flex; flex-direction: column; align-items: flex-start; gap: 4px;
-        }
-        .music-toggle button {
-          border: 1px solid rgba(255,255,255,0.35);
-          border-radius: 999px; padding: 9px 16px; cursor: pointer;
-          font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase;
-          color: #EDE3D3; background: rgba(0,0,0,0.3);
-          backdrop-filter: blur(4px);
-        }
-        .music-hint { font-size: 10px; color: rgba(0,0,0,0.5); background: rgba(255,255,255,0.7); padding: 4px 8px; border-radius: 6px; max-width: 180px; }
-
-        @media (max-width: 640px) {
-          .side-nav { right: 12px; gap: 12px; }
-          .side-nav-label { display: none; }
-        }
-      `}</style>
-
-      <Hero innerRef={heroRef} />
-
-      {SECTIONS.map((s, i) => (
-        <Section data={s} innerRef={refs.current[i]} key={s.key} />
-      ))}
-
-      <nav className="side-nav" aria-label="Jump to event">
-        {SECTIONS.map((s, i) => (
-          <button key={s.key} onClick={() => scrollTo(i)}>
-            <span className="side-nav-label">{s.nav}</span>
-            <span className="side-nav-dot" />
-          </button>
-        ))}
       </nav>
 
-      <div className="music-toggle">
-        <button onClick={toggle}>{playing ? "Pause music" : "Play soft music"}</button>
-        {error && (
-          <span className="music-hint">
-           
+
+      {/* HERO CONTENT */}
+
+      <div className="hero-content">
+
+        <motion.p
+          className="hero-intro"
+
+          initial={{
+            opacity: 0,
+            y: 20
+          }}
+
+          animate={{
+            opacity: 1,
+            y: 0
+          }}
+
+          transition={{
+            duration: 1,
+            delay: 0.25
+          }}
+        >
+
+          WE ARE GETTING
+
+        </motion.p>
+
+
+        <div className="hero-title-wrapper">
+
+          <motion.h1
+
+            initial={{
+              y: "110%"
+            }}
+
+            animate={{
+              y: 0
+            }}
+
+            transition={{
+              duration: 1.3,
+              delay: 0.4,
+              ease: [0.16, 1, 0.3, 1]
+            }}
+
+          >
+
+            BETROTHED
+
+          </motion.h1>
+
+        </div>
+
+
+        <motion.div
+          className="hero-couple"
+
+          initial={{
+            opacity: 0
+          }}
+
+          animate={{
+            opacity: 1
+          }}
+
+          transition={{
+            delay: 1,
+            duration: 1
+          }}
+        >
+
+          <span>
+            {WEDDING.groom}
           </span>
-        )}
+
+          <i>&</i>
+
+          <span>
+            {WEDDING.bride}
+          </span>
+
+        </motion.div>
+
+
+        <motion.p
+          className="hero-date"
+
+          initial={{
+            opacity: 0
+          }}
+
+          animate={{
+            opacity: 1
+          }}
+
+          transition={{
+            delay: 1.2,
+            duration: 1
+          }}
+        >
+
+          {WEDDING.dateText}
+
+        </motion.p>
+
       </div>
-    </div>
+
+
+      <motion.a
+        href="#story"
+        className="hero-scroll"
+
+        animate={{
+          y: [0, 8, 0]
+        }}
+
+        transition={{
+          duration: 2,
+          repeat: Infinity
+        }}
+      >
+
+        <span>
+          SCROLL TO EXPLORE
+        </span>
+
+        <ArrowDown size={16} />
+
+      </motion.a>
+
+    </section>
+
   );
+
+}
+
+
+// ============================================================
+// WELCOME
+// ============================================================
+
+function Welcome() {
+
+  return (
+
+    <section
+      id="story"
+      className="welcome-section"
+    >
+
+      <div className="welcome-photo" />
+
+      <div className="welcome-overlay" />
+
+
+      <div className="welcome-content">
+
+        <div className="vertical-line" />
+
+
+        <Reveal>
+
+          <p className="eyebrow">
+            A NEW CHAPTER
+          </p>
+
+        </Reveal>
+
+
+        <Reveal delay={0.1}>
+
+          <h2>
+
+            Welcome to
+            <br />
+
+            <em>our invitation.</em>
+
+          </h2>
+
+        </Reveal>
+
+
+        <Reveal delay={0.2}>
+
+          <p className="welcome-description">
+
+            We are so happy to share this
+            beautiful chapter of our lives
+            with the people who mean the
+            most to us.
+
+          </p>
+
+        </Reveal>
+
+
+        {/* IMPORTANT BUTTON */}
+
+        <Reveal delay={0.35}>
+
+          <a
+            href="#venues"
+            className="engagement-button"
+          >
+
+            <span>
+              ENGAGEMENT
+            </span>
+
+            <ArrowUpRight size={18} />
+
+          </a>
+
+        </Reveal>
+
+      </div>
+
+    </section>
+
+  );
+
+}
+
+
+// ============================================================
+// COUPLE IMAGE
+// ============================================================
+
+function CoupleImage() {
+
+  return (
+
+    <section className="couple-photo-section">
+
+      <motion.div
+        className="couple-photo"
+
+        initial={{
+          scale: 1.08
+        }}
+
+        whileInView={{
+          scale: 1
+        }}
+
+        viewport={{
+          once: true
+        }}
+
+        transition={{
+          duration: 2,
+          ease: [0.16, 1, 0.3, 1]
+        }}
+      />
+
+      <div className="couple-photo-overlay" />
+
+
+      <div className="couple-photo-content">
+
+        <Reveal>
+
+          <p className="eyebrow">
+            TOGETHER
+          </p>
+
+        </Reveal>
+
+
+        <Reveal delay={0.15}>
+
+          <h2>
+
+            One love.
+            <br />
+
+            <em>One story.</em>
+
+          </h2>
+
+        </Reveal>
+
+      </div>
+
+
+      <div className="photo-caption">
+        Love stories are narratives focused on romantic relationships, 
+        emotional connection, and the journey of two people falling or staying
+         in love.Key Types of Love StoriesClassic Literature: Timeless novels like 
+         Jane Austen's Pride and Prejudice explore social standing, wit, and personal
+          growth alongside romance.Tragic and Historical: Tales like Shakespeare's Romeo and Juliet or real-world epics focus on sacrifice, societal barriers, and deep loss.Modern and Contemporary: Everyday accounts of real people meeting, overcoming obstacles, and building long-term partnerships.Common Tro
+      </div>
+
+    </section>
+
+  );
+
+}
+
+
+// ============================================================
+// PERSON SECTION
+// ============================================================
+
+function PersonSection({
+  image,
+  number,
+  role,
+  name,
+  align
+}) {
+
+  return (
+
+    <section className="person-section">
+
+      <motion.div
+        className="person-photo"
+
+        style={{
+          backgroundImage:
+            `url("${image}")`
+        }}
+
+        initial={{
+          scale: 1
+        }}
+
+        whileInView={{
+          scale: 1.08
+        }}
+
+        viewport={{
+          once: true
+        }}
+
+        transition={{
+          duration: 12,
+          ease: "linear"
+        }}
+      />
+
+
+      <div className="person-overlay" />
+
+
+      <div
+        className={`person-content ${align}`}
+      >
+
+        <Reveal>
+
+          <span className="person-number">
+            {number}
+          </span>
+
+        </Reveal>
+
+
+        <Reveal delay={0.1}>
+
+          <p className="eyebrow">
+            {role}
+          </p>
+
+        </Reveal>
+
+
+        <div className="name-reveal">
+
+          <motion.h2
+
+            initial={{
+              y: "110%"
+            }}
+
+            whileInView={{
+              y: 0
+            }}
+
+            viewport={{
+              once: true
+            }}
+
+            transition={{
+              duration: 1.2,
+              delay: 0.2,
+              ease: [0.16, 1, 0.3, 1]
+            }}
+
+          >
+
+            {name}
+
+          </motion.h2>
+
+        </div>
+
+      </div>
+
+
+      <div className="person-scroll">
+
+        SCROLL
+
+        <ArrowDown size={15} />
+
+      </div>
+
+    </section>
+
+  );
+
+}
+
+
+// ============================================================
+// COUNTDOWN
+// ============================================================
+
+function Countdown() {
+
+  const calculate = () => {
+
+    const target =
+      new Date(WEDDING.date).getTime();
+
+    const now =
+      Date.now();
+
+    const difference =
+      target - now;
+
+
+    if (difference <= 0) {
+
+      return {
+        days: 0,
+        hours: 0,
+        minutes: 0,
+        seconds: 0
+      };
+
+    }
+
+
+    return {
+
+      days: Math.floor(
+        difference /
+        (1000 * 60 * 60 * 24)
+      ),
+
+      hours: Math.floor(
+        (difference /
+          (1000 * 60 * 60)) %
+          24
+      ),
+
+      minutes: Math.floor(
+        (difference /
+          (1000 * 60)) %
+          60
+      ),
+
+      seconds: Math.floor(
+        (difference / 1000) %
+        60
+      )
+
+    };
+
+  };
+
+
+  const [time, setTime] =
+    useState(calculate());
+
+
+  useEffect(() => {
+
+    const interval =
+      setInterval(() => {
+
+        setTime(calculate());
+
+      }, 1000);
+
+
+    return () =>
+      clearInterval(interval);
+
+  }, []);
+
+
+  const values = [
+
+    {
+      number: time.days,
+      label: "DAYS"
+    },
+
+    {
+      number: time.hours,
+      label: "HOURS"
+    },
+
+    {
+      number: time.minutes,
+      label: "MINUTES"
+    },
+
+    {
+      number: time.seconds,
+      label: "SECONDS"
+    }
+
+  ];
+
+
+  return (
+
+    <section
+      className="countdown-section"
+    >
+
+      {/* BACKGROUND PHOTO */}
+
+      <div className="countdown-photo" />
+
+      <div className="countdown-overlay" />
+
+
+      <div className="countdown-content">
+
+        <Reveal>
+
+          <p className="eyebrow">
+            UNTIL WE SAY I DO
+          </p>
+
+        </Reveal>
+
+
+        <Reveal delay={0.1}>
+
+          <h2>
+            The countdown
+          </h2>
+
+        </Reveal>
+
+
+        <div className="countdown-grid">
+
+          {values.map(
+            (item, index) => (
+
+              <motion.div
+                key={item.label}
+                className="countdown-glass"
+
+                initial={{
+                  opacity: 0,
+                  y: 40
+                }}
+
+                whileInView={{
+                  opacity: 1,
+                  y: 0
+                }}
+
+                viewport={{
+                  once: true
+                }}
+
+                transition={{
+                  delay: index * 0.08,
+                  duration: 0.8
+                }}
+
+                whileHover={{
+                  y: -8
+                }}
+              >
+
+                <div className="glass-light" />
+
+
+                <motion.div
+                  className="count-number"
+
+                  key={item.number}
+
+                  initial={{
+                    opacity: 0,
+                    scale: 0.85
+                  }}
+
+                  animate={{
+                    opacity: 1,
+                    scale: 1
+                  }}
+
+                  transition={{
+                    duration: 0.3
+                  }}
+                >
+
+                  {String(
+                    item.number
+                  ).padStart(2, "0")}
+
+                </motion.div>
+
+
+                <span className="count-label">
+                  {item.label}
+                </span>
+
+              </motion.div>
+
+            )
+          )}
+
+        </div>
+
+
+        <Reveal delay={0.25}>
+
+          <p className="count-date">
+            {WEDDING.dateText}
+          </p>
+
+        </Reveal>
+
+      </div>
+
+    </section>
+
+  );
+
+}
+
+
+// ============================================================
+// CINEMATIC GALLERY
+// ============================================================
+
+const galleryImages = [
+
+  {
+    src: "/images/gallery1.jpg",
+    className: "gallery-large"
+  },
+
+  {
+    src: "/images/gallery2.jpg",
+    className: "gallery-small"
+  },
+
+  {
+    src: "/images/gallery3.jpg",
+    className: "gallery-tall"
+  },
+
+  {
+    src: "/images/gallery4.jpg",
+    className: "gallery-wide"
+  },
+
+  {
+    src: "/images/gallery5.jpg",
+    className: "gallery-small-two"
+  },
+
+  {
+    src: "/images/gallery6.jpg",
+    className: "gallery-final"
+  }
+
+];
+
+
+function Gallery() {
+
+  return (
+
+    <section
+      id="gallery"
+      className="gallery-section"
+    >
+
+      <div className="gallery-introduction">
+
+        <Reveal>
+
+          <p className="eyebrow">
+            LITTLE MOMENTS
+          </p>
+
+        </Reveal>
+
+
+        <Reveal delay={0.1}>
+
+          <h2>
+
+            Our
+            <br />
+
+            <em>memories.</em>
+
+          </h2>
+
+        </Reveal>
+
+
+        <Reveal delay={0.2}>
+
+          <p>
+
+            A collection of moments
+            that brought us here.
+
+          </p>
+
+        </Reveal>
+
+      </div>
+
+
+      {/* CINEMATIC COLLAGE */}
+
+      <div className="gallery-collage">
+
+        {galleryImages.map(
+          (image, index) => (
+
+            <motion.div
+
+              key={image.src}
+
+              className={`gallery-image ${image.className}`}
+
+              initial={{
+                opacity: 0,
+                y: 80,
+                scale: 0.96
+              }}
+
+              whileInView={{
+                opacity: 1,
+                y: 0,
+                scale: 1
+              }}
+
+              viewport={{
+                once: true,
+                amount: 0.1
+              }}
+
+              transition={{
+                duration: 1.1,
+                delay: index * 0.08,
+                ease: [0.16, 1, 0.3, 1]
+              }}
+
+            >
+
+              <img
+                src={image.src}
+                alt="Wedding memory"
+              />
+
+
+              <motion.div
+
+                className="gallery-image-inner"
+
+                whileInView={{
+                  scale: [1.08, 1]
+                }}
+
+                viewport={{
+                  once: true
+                }}
+
+                transition={{
+                  duration: 2
+                }}
+
+              />
+
+            </motion.div>
+
+          )
+        )}
+
+      </div>
+
+
+      <div className="gallery-bottom-text">
+
+        <span>
+          MORE MEMORIES
+        </span>
+
+        <span>
+          A & E
+        </span>
+
+      </div>
+
+    </section>
+
+  );
+
+}
+
+
+// ============================================================
+// VENUE CARD
+// ============================================================
+
+function VenueCard({
+  type,
+  venue,
+  address,
+  image,
+  map
+}) {
+
+  return (
+
+    <Reveal className="venue-card">
+
+      <div className="venue-card-photo">
+
+        <img
+          src={image}
+          alt={venue}
+        />
+
+      </div>
+
+
+      <div className="venue-card-info">
+
+        <p className="venue-type">
+          {type}
+        </p>
+
+
+        <h3>
+          {venue}
+        </h3>
+
+
+        <div className="venue-address">
+
+          <MapPin size={16} />
+
+          <span>
+            {address}
+          </span>
+
+        </div>
+
+
+        <a
+          href={map}
+          target="_blank"
+          rel="noreferrer"
+          className="map-link"
+        >
+
+          <span>
+            VIEW ON MAP
+          </span>
+
+          <ArrowUpRight size={17} />
+
+        </a>
+
+      </div>
+
+    </Reveal>
+
+  );
+
+}
+
+
+// ============================================================
+// VENUES
+// ============================================================
+
+function Venues() {
+
+  return (
+
+    <section
+      id="venues"
+      className="venues-section"
+    >
+
+      {/* BACKGROUND PHOTO */}
+
+      <div className="venues-background" />
+
+      <div className="venues-dark" />
+
+
+      <div className="venues-content">
+
+        <div className="venues-title">
+
+          <Reveal>
+
+            <p className="eyebrow">
+              JOIN US
+            </p>
+
+          </Reveal>
+
+
+          <Reveal delay={0.1}>
+
+            <h2>
+
+              Where the
+              <br />
+
+              <em>magic happens.</em>
+
+            </h2>
+
+          </Reveal>
+
+        </div>
+
+
+        <div className="venue-grid">
+
+          <VenueCard
+
+            type="ENGAGEMENT"
+
+            venue={
+              WEDDING.church.name
+            }
+
+            address={
+              WEDDING.church.address
+            }
+
+            image="/images/church.jpg"
+
+            map={
+              WEDDING.church.map
+            }
+
+          />
+
+
+          <VenueCard
+
+            type="RECEPTION"
+
+            venue={
+              WEDDING.reception.name
+            }
+
+            address={
+              WEDDING.reception.address
+            }
+
+            image="/images/reception.jpg"
+
+            map={
+              WEDDING.reception.map
+            }
+
+          />
+
+        </div>
+
+      </div>
+
+    </section>
+
+  );
+
+}
+
+
+// ============================================================
+// DRESS CODE
+// ============================================================
+
+function DressCode() {
+
+  return (
+
+    <section
+      id="dress"
+      className="dress-section"
+    >
+
+      <div className="dress-photo" />
+
+      <div className="dress-overlay" />
+
+
+      <div className="dress-content">
+
+        <Reveal>
+
+          <p className="eyebrow">
+            WHAT TO WEAR
+          </p>
+
+        </Reveal>
+
+
+        <Reveal delay={0.1}>
+
+          <h2>
+            Dress code
+          </h2>
+
+        </Reveal>
+
+
+        <Reveal delay={0.2}>
+
+          <div className="dress-line" />
+
+        </Reveal>
+
+
+        <Reveal delay={0.3}>
+
+          <p className="dress-style">
+            Elegant
+          </p>
+
+          <p className="dress-subtitle">
+            traditional attire in loud colors
+          </p>
+
+        </Reveal>
+
+
+        <Reveal delay={0.4}>
+
+          <p className="dress-description">
+
+            Come dressed in something
+            that makes you feel beautiful,
+            comfortable and ready to celebrate.
+
+          </p>
+
+        </Reveal>
+
+      </div>
+
+    </section>
+
+  );
+
+}
+
+
+// ============================================================
+// FOOTER
+// ============================================================
+
+function Footer() {
+
+  return (
+
+    <footer className="final-section">
+
+      <Reveal>
+
+        <p className="eyebrow">
+          WITH LOVE
+        </p>
+
+      </Reveal>
+
+
+      <div className="final-names">
+
+        <motion.span
+
+          initial={{
+            x: -70,
+            opacity: 0
+          }}
+
+          whileInView={{
+            x: 0,
+            opacity: 1
+          }}
+
+          viewport={{
+            once: true
+          }}
+
+          transition={{
+            duration: 1
+          }}
+
+        >
+
+          {WEDDING.groom}
+
+        </motion.span>
+
+
+        <i>
+          &
+        </i>
+
+
+        <motion.span
+
+          initial={{
+            x: 70,
+            opacity: 0
+          }}
+
+          whileInView={{
+            x: 0,
+            opacity: 1
+          }}
+
+          viewport={{
+            once: true
+          }}
+
+          transition={{
+            duration: 1
+          }}
+
+        >
+
+          {WEDDING.bride}
+
+        </motion.span>
+
+      </div>
+
+
+      <p className="final-date">
+        {WEDDING.dateText}
+      </p>
+
+
+      <div className="final-heart">
+        ♥
+      </div>
+
+    </footer>
+
+  );
+
+}
+
+
+// ============================================================
+// APP
+// ============================================================
+
+export default function App() {
+
+  return (
+
+    <main className="wedding-site">
+
+      <Hero />
+
+      <Welcome />
+
+      <CoupleImage />
+
+      <PersonSection
+        image="/images/groom.jpg"
+        number="01"
+        role="THE GROOM"
+        name={WEDDING.groom}
+        align="left"
+      />
+
+      {/* COUNTDOWN */}
+
+      <Countdown />
+
+      {/* GALLERY BETWEEN COUNTDOWN + BRIDE */}
+
+      <Gallery />
+
+      <PersonSection
+        image="/images/bride.jpg"
+        number="02"
+        role="THE BRIDE"
+        name={WEDDING.bride}
+        align="right"
+      />
+
+      <Venues />
+
+      <DressCode />
+
+      <Footer />
+
+    </main>
+
+  );
+
 }
