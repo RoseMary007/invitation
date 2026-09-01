@@ -1624,3 +1624,6 @@ img {
     transition-duration: 0.01ms !important;
   }
 }
+.hero-title-wrapper h1 {
+    font-size: 120px;
+}
