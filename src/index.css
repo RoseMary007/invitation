@@ -1,1001 +1,1500 @@
 /* ============================================================
-   PHONE ONLY — WEDDING WEBSITE
-   Designed specifically for 320px–700px screens
+   MOBILE WEDDING INVITATION
+   PHONE ONLY — 700px and below
    ============================================================ */
 
-@media screen and (max-width: 700px) {
-
-  /* ----------------------------------------------------------
-     BASIC
-     ---------------------------------------------------------- */
-
-  html,
-  body {
-    width: 100%;
-    max-width: 100%;
-    overflow-x: hidden;
-  }
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Italiana&display=swap');
+
+/* ============================================================
+   RESET
+   ============================================================ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #eae5df;
+  color: #282522;
+  font-family: "DM Sans", sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  width: 100%;
+}
+
+:root {
+  --cream: #eae5df;
+  --dark: #25221f;
+  --white: #ffffff;
+  --serif: "Italiana", Georgia, serif;
+  --sans: "DM Sans", sans-serif;
+}
+
+
+/* ============================================================
+   GENERAL
+   ============================================================ */
+
+.wedding-site {
+  width: 100%;
+  overflow: hidden;
+}
+
+.eyebrow {
+  font-family: var(--sans);
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: 0.32em;
+  opacity: 0.72;
+}
+
+.vertical-line {
+  width: 1px;
+  height: 50px;
+  background: currentColor;
+  opacity: 0.35;
+  margin: 0 auto 30px;
+}
+
+
+/* ============================================================
+   NAVIGATION
+   ============================================================ */
+
+.top-navigation {
+  position: absolute;
+  z-index: 20;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: calc(100% - 28px);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 12px 17px;
+
+  border: 1px solid rgba(255,255,255,0.28);
+  border-radius: 100px;
+
+  background: rgba(0,0,0,0.14);
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  color: white;
+}
+
+.nav-monogram {
+  font-family: var(--serif);
+  font-size: 18px;
+  letter-spacing: 0.04em;
+}
 
-  body {
-    font-size: 14px;
-  }
+.nav-monogram span {
+  font-size: 12px;
+  margin: 0 2px;
+}
 
-  * {
-    max-width: 100%;
-  }
+.nav-menu {
+  display: none;
+}
 
 
-  /* ----------------------------------------------------------
-     NAVIGATION
-     ---------------------------------------------------------- */
+/* ============================================================
+   HERO
+   ============================================================ */
 
-  .top-navigation {
-    position: absolute;
-    top: 14px;
-    left: 50%;
-    transform: translateX(-50%);
+.hero-section {
+  position: relative;
 
-    width: calc(100% - 28px);
+  width: 100%;
+  height: 100svh;
+  min-height: 620px;
 
-    padding: 13px 17px;
+  overflow: hidden;
 
-    border-radius: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    background: rgba(0, 0, 0, 0.16);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
-  }
+  color: white;
+}
 
-  .nav-monogram {
-    font-size: 18px;
-  }
+.hero-photo {
+  position: absolute;
+  inset: -5%;
 
-  .nav-monogram span {
-    font-size: 12px;
-  }
+  background-image: url("/images/hero.jpg");
+  background-size: cover;
+  background-position: center;
+}
 
-  .nav-menu {
-    display: none;
-  }
+.hero-dark {
+  position: absolute;
+  inset: 0;
 
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(0,0,0,0.20),
+      rgba(0,0,0,0.08) 45%,
+      rgba(0,0,0,0.68)
+    );
+}
 
-  /* ----------------------------------------------------------
-     HERO
-     ---------------------------------------------------------- */
+.hero-content {
+  position: relative;
+  z-index: 3;
 
-  .hero-section {
-    width: 100%;
-    height: 100svh;
-    min-height: 620px;
+  width: 100%;
+  padding: 0 18px;
 
-    padding: 0 18px;
+  text-align: center;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  margin-top: 45px;
+}
 
-    overflow: hidden;
-  }
+.hero-intro {
+  font-size: 9px;
+  letter-spacing: 0.28em;
+  font-weight: 300;
+}
 
-  .hero-photo {
-    inset: -3%;
 
-    background-size: cover;
-    background-position: center center;
-  }
+/* ============================================================
+   HERO TITLE
+   ============================================================ */
 
-  .hero-content {
-    width: 100%;
-    max-width: 100%;
+.hero-title-wrapper {
+  width: 100%;
+  overflow: hidden;
 
-    margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-    text-align: center;
-  }
+  margin-top: 18px;
+}
 
-  .hero-intro {
-    font-size: 9px;
-    letter-spacing: 0.28em;
+.hero-title-wrapper h1 {
+  width: 100%;
 
-    white-space: nowrap;
-  }
+  padding: 0;
 
+  font-family: var(--serif);
+  font-weight: 400;
 
-  /* ----------------------------------------------------------
-     HERO TITLE — IMPORTANT FIX
-     ---------------------------------------------------------- */
+  /*
+     Large but controlled so the names
+     never escape the phone screen.
+  */
+  font-size: 120px;
 
-  .hero-title-wrapper {
-    width: 100%;
+  line-height: 0.82;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  letter-spacing: -0.075em;
 
-    overflow: visible;
+  text-align: center;
 
-    padding: 0;
-    margin-top: 18px;
-  }
+  white-space: nowrap;
+}
 
-  .hero-title-wrapper h1 {
 
-    /* NEVER let the title exceed the phone */
-    width: 100%;
-    max-width: 100%;
+/* ============================================================
+   HERO COUPLE
+   ============================================================ */
 
-    margin: 0;
-    padding: 0;
+.hero-couple {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    font-family: var(--serif);
+  gap: 12px;
 
-    font-size: clamp(55px, 18vw, 105px);
+  margin-top: 30px;
 
-    font-weight: 400;
+  font-size: 8px;
+  letter-spacing: 0.28em;
+}
 
-    line-height: 0.82;
+.hero-couple i {
+  font-family: var(--serif);
 
-    /* slightly tighter */
-    letter-spacing: -0.075em;
+  font-size: 25px;
 
-    text-align: center;
+  font-style: italic;
+  letter-spacing: 0;
+}
 
-    /* THIS IS THE IMPORTANT PART */
-    white-space: normal;
+.hero-date {
+  margin-top: 15px;
 
-    overflow-wrap: normal;
-    word-break: normal;
+  font-size: 11px;
+  letter-spacing: 0.28em;
+}
 
-    box-sizing: border-box;
-  }
+.hero-scroll {
+  position: absolute;
+  z-index: 5;
 
+  bottom: 20px;
+  left: 50%;
 
-  /* ----------------------------------------------------------
-     HERO COUPLE
-     ---------------------------------------------------------- */
+  transform: translateX(-50%);
 
-  .hero-couple {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-    gap: 10px;
+  gap: 6px;
 
-    margin-top: 30px;
+  color: white;
 
-    font-size: 8px;
-    letter-spacing: 0.25em;
+  font-size: 7px;
+  letter-spacing: 0.28em;
+}
 
-    white-space: nowrap;
-  }
 
-  .hero-couple i {
-    font-size: 23px;
-  }
+/* ============================================================
+   WELCOME / LOVE STORY
+   ============================================================ */
 
-  .hero-date {
-    margin-top: 14px;
+.welcome-section {
+  position: relative;
 
-    font-size: 11px;
-    letter-spacing: 0.28em;
-  }
+  min-height: 100svh;
 
-  .hero-scroll {
-    bottom: 20px;
+  padding: 100px 22px;
 
-    font-size: 7px;
-    letter-spacing: 0.28em;
-  }
+  overflow: hidden;
 
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-  /* ----------------------------------------------------------
-     WELCOME / LOVE STORY
-     ---------------------------------------------------------- */
+  color: white;
+}
 
-  .welcome-section {
+.welcome-photo {
+  position: absolute;
+  inset: 0;
 
-    width: 100%;
-    min-height: 100svh;
+  background-image: url("/images/welcome.jpg");
+  background-size: cover;
+  background-position: center;
 
-    padding: 90px 22px;
+  transform: scale(1.04);
+}
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.welcome-overlay {
+  position: absolute;
+  inset: 0;
 
-    overflow: hidden;
-  }
+  background:
+    linear-gradient(
+      rgba(25,21,18,0.52),
+      rgba(25,21,18,0.78)
+    );
+}
 
-  .welcome-photo {
-    inset: 0;
+.welcome-content {
+  position: relative;
+  z-index: 2;
 
-    background-size: cover;
-    background-position: center;
-  }
+  width: 100%;
+  max-width: 390px;
 
-  .welcome-overlay {
-    background:
-      linear-gradient(
-        to bottom,
-        rgba(30, 26, 22, 0.48),
-        rgba(30, 26, 22, 0.75)
-      );
-  }
+  text-align: center;
 
-  .welcome-content {
-    width: 100%;
-    max-width: 350px;
+  padding: 25px 8px;
+}
 
-    text-align: center;
-  }
+.welcome-content .vertical-line {
+  margin-bottom: 28px;
+}
 
-  .welcome-content .vertical-line {
-    height: 50px;
-    margin-bottom: 30px;
-  }
+.welcome-content h2 {
+  margin-top: 16px;
 
-  .welcome-content h2 {
+  font-family: var(--serif);
 
-    width: 100%;
+  /*
+     Elegant rather than enormous.
+     This prevents LOVE STORY from
+     becoming cramped on small phones.
+  */
+  font-size: 22vw;
 
-    margin-top: 15px;
+  line-height: 0.86;
 
-    font-size: clamp(60px, 19vw, 100px);
+  font-weight: 400;
 
-    line-height: 0.84;
+  letter-spacing: -0.055em;
+}
 
-    letter-spacing: -0.055em;
+.welcome-content h2 em {
+  font-style: italic;
+}
 
-    font-weight: 400;
-  }
+.welcome-description {
+  max-width: 310px;
 
-  .welcome-description {
+  margin: 32px auto 0;
 
-    width: 100%;
-    max-width: 290px;
+  font-size: 11px;
 
-    margin: 30px auto 0;
+  line-height: 1.9;
 
-    font-size: 11px;
+  opacity: 0.74;
+}
 
-    line-height: 1.9;
+.engagement-button {
+  display: inline-flex;
 
-    opacity: 0.72;
-  }
+  align-items: center;
+  justify-content: center;
 
-  .engagement-button {
+  gap: 15px;
 
-    margin-top: 30px;
+  margin-top: 32px;
 
-    padding: 14px 18px;
+  padding: 14px 19px;
 
-    gap: 15px;
+  border: 1px solid rgba(255,255,255,0.65);
 
-    font-size: 8px;
+  font-size: 8px;
 
-    letter-spacing: 0.22em;
-  }
+  letter-spacing: 0.25em;
 
+  transition:
+    background 0.35s ease,
+    color 0.35s ease;
+}
 
-  /* ----------------------------------------------------------
-     LOVE STORY / COUPLE IMAGE
-     ---------------------------------------------------------- */
+.engagement-button:hover {
+  background: white;
+  color: #282522;
+}
 
-  .couple-photo-section {
 
-    width: 100%;
+/* ============================================================
+   COUPLE PHOTO
+   ============================================================ */
 
-    height: 90svh;
-    min-height: 600px;
+.couple-photo-section {
+  position: relative;
 
-    overflow: hidden;
+  width: 100%;
+  height: 82svh;
+  min-height: 580px;
 
-    position: relative;
-  }
+  overflow: hidden;
 
-  .couple-photo {
+  color: white;
+}
 
-    inset: 0;
+.couple-photo {
+  position: absolute;
+  inset: 0;
 
-    background-size: cover;
+  background-image: url("/images/couple.jpg");
 
-    /*
-       Change this if the couple is positioned differently
-       in your actual image.
-    */
-    background-position: center center;
-  }
+  background-size: cover;
+  background-position: center;
+}
 
-  .couple-photo-overlay {
-
-    background:
-      linear-gradient(
-        to bottom,
-        rgba(0, 0, 0, 0.05) 20%,
-        rgba(0, 0, 0, 0.75) 100%
-      );
-  }
+.couple-photo-overlay {
+  position: absolute;
+  inset: 0;
 
-  .couple-photo-content {
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(0,0,0,0.05),
+      rgba(0,0,0,0.78)
+    );
+}
 
-    left: 7%;
-    right: 7%;
+.couple-photo-content {
+  position: absolute;
+  z-index: 2;
 
-    bottom: 10%;
+  left: 7%;
+  bottom: 9%;
 
-    z-index: 3;
-  }
+  width: 86%;
+}
 
-  .couple-photo-content .eyebrow {
-    font-size: 8px;
-    letter-spacing: 0.28em;
-  }
+.couple-photo-content h2 {
+  margin-top: 15px;
 
-  .couple-photo-content h2 {
+  font-family: var(--serif);
 
-    margin-top: 12px;
+  font-size: 20vw;
 
-    font-size: clamp(62px, 19vw, 105px);
+  line-height: 0.84;
 
-    line-height: 0.84;
+  font-weight: 400;
 
-    letter-spacing: -0.065em;
+  letter-spacing: -0.06em;
+}
 
-    max-width: 100%;
-  }
+.couple-photo-content em {
+  font-style: italic;
+}
 
-  .photo-caption {
+.photo-caption {
+  position: absolute;
 
-    right: 18px;
-    bottom: 18px;
+  z-index: 3;
 
-    font-size: 13px;
+  right: 18px;
+  bottom: 18px;
 
-    letter-spacing: 0.12em;
+  font-family: var(--serif);
 
-    color: #ffffff;
+  font-size: 15px;
 
-    opacity: 0.65;
-  }
+  letter-spacing: 0.12em;
 
+  font-style: italic;
 
-  /* ----------------------------------------------------------
-     PERSON / BRIDE & GROOM
-     ---------------------------------------------------------- */
+  opacity: 0.72;
 
-  .person-section {
+  color: white;
+}
 
-    width: 100%;
 
-    height: 90svh;
-    min-height: 600px;
+/* ============================================================
+   PERSON / BRIDE / GROOM
+   ============================================================ */
 
-    overflow: hidden;
-  }
+.person-section {
+  position: relative;
 
-  .person-photo {
+  width: 100%;
+  height: 88svh;
+  min-height: 600px;
 
-    inset: 0;
+  overflow: hidden;
 
-    background-size: cover;
-    background-position: center;
-  }
+  color: white;
+}
 
-  .person-overlay {
-
-    background:
-      linear-gradient(
-        to bottom,
-        rgba(0,0,0,0.02),
-        rgba(0,0,0,0.72)
-      );
-  }
+.person-photo {
+  position: absolute;
+  inset: -3%;
 
-  .person-content {
+  background-size: cover;
+  background-position: center;
+}
 
-    bottom: 10%;
-  }
+.person-overlay {
+  position: absolute;
+  inset: 0;
 
-  .person-content.left {
-    left: 7%;
-    right: 7%;
-  }
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(0,0,0,0.04),
+      rgba(0,0,0,0.72)
+    );
+}
+
+.person-content {
+  position: absolute;
+
+  z-index: 3;
+
+  bottom: 10%;
+}
+
+.person-content.left {
+  left: 7%;
+}
+
+.person-content.right {
+  right: 7%;
+
+  text-align: right;
+}
+
+.person-number {
+  font-family: var(--serif);
+
+  font-size: 14px;
+
+  opacity: 0.8;
+}
+
+.person-content .eyebrow {
+  margin-top: 14px;
+}
+
+.name-reveal {
+  margin-top: 7px;
+  overflow: visible;
+}
+
+.name-reveal h2 {
+  font-family: var(--serif);
+
+  font-size: 23vw;
+
+  font-weight: 400;
+
+  line-height: 0.78;
+
+  letter-spacing: -0.065em;
+}
+
 
-  .person-content.right {
-    right: 7%;
-    left: 7%;
+/* ============================================================
+   PERSON SCROLL
+   ============================================================ */
+
+.person-scroll {
+  position: absolute;
+
+  bottom: 18px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 5px;
+
+  font-size: 7px;
+
+  letter-spacing: 0.3em;
+
+  opacity: 0.6;
+}
+
+
+/* ============================================================
+   COUNTDOWN
+   ============================================================ */
+
+.countdown-section {
+  position: relative;
+
+  min-height: 100svh;
+
+  padding: 95px 18px;
+
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: white;
+}
+
+.countdown-photo {
+  position: absolute;
+  inset: -5%;
+
+  background-image: url("/images/countdown.jpg");
+
+  background-size: cover;
+  background-position: center;
+
+  animation:
+    slowPhotoZoom 16s ease-in-out infinite alternate;
+}
+
+@keyframes slowPhotoZoom {
+  from {
+    transform: scale(1);
   }
 
-  .person-number {
-    font-size: 12px;
+  to {
+    transform: scale(1.07);
   }
+}
 
-  .person-content .eyebrow {
-    margin-top: 12px;
+.countdown-overlay {
+  position: absolute;
+  inset: 0;
 
-    font-size: 8px;
-    letter-spacing: 0.27em;
-  }
+  background:
+    linear-gradient(
+      rgba(15,13,11,0.52),
+      rgba(15,13,11,0.78)
+    );
+}
 
-  .name-reveal {
+.countdown-content {
+  position: relative;
+  z-index: 2;
 
-    width: 100%;
+  width: 100%;
+  max-width: 390px;
 
-    margin-top: 8px;
+  text-align: center;
+}
 
-    overflow: visible;
-  }
+.countdown-content h2 {
+  margin-top: 18px;
 
-  .name-reveal h2 {
+  font-family: var(--serif);
 
-    font-size: clamp(65px, 21vw, 120px);
+  font-size: 21vw;
 
-    line-height: 0.82;
+  font-weight: 400;
 
-    letter-spacing: -0.07em;
+  line-height: 0.86;
 
-    white-space: nowrap;
-  }
+  letter-spacing: -0.055em;
+}
 
-  .person-scroll {
+.countdown-grid {
+  width: 100%;
 
-    bottom: 18px;
+  margin: 42px auto 25px;
 
-    font-size: 7px;
-  }
+  display: grid;
 
+  grid-template-columns: repeat(2, 1fr);
 
-  /* ----------------------------------------------------------
-     COUNTDOWN
-     ---------------------------------------------------------- */
+  gap: 9px;
+}
 
-  .countdown-section {
+.countdown-glass {
+  position: relative;
 
-    width: 100%;
+  min-height: 135px;
 
-    min-height: 100svh;
+  display: flex;
+  flex-direction: column;
 
-    padding: 85px 18px;
+  align-items: center;
+  justify-content: center;
 
-    overflow: hidden;
-  }
+  border:
+    1px solid rgba(255,255,255,0.2);
 
-  .countdown-photo {
+  border-radius: 20px;
 
-    inset: -3%;
-  }
+  background:
+    rgba(255,255,255,0.095);
 
-  .countdown-overlay {
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.18),
+    0 15px 40px rgba(0,0,0,0.18);
 
-    background:
-      linear-gradient(
-        rgba(15,13,11,0.52),
-        rgba(15,13,11,0.76)
-      );
-  }
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 
-  .countdown-content {
+  overflow: hidden;
+}
 
-    width: 100%;
-    max-width: 380px;
-  }
+.glass-light {
+  position: absolute;
 
-  .countdown-content h2 {
+  width: 120px;
+  height: 120px;
 
-    margin-top: 15px;
+  top: -70px;
+  right: -45px;
 
-    font-size: clamp(58px, 18vw, 100px);
+  border-radius: 50%;
 
-    line-height: 0.85;
+  background: rgba(255,255,255,0.14);
 
-    letter-spacing: -0.06em;
-  }
+  filter: blur(25px);
+}
 
-  .countdown-grid {
+.count-number {
+  position: relative;
 
-    width: 100%;
+  font-family: var(--serif);
 
-    margin: 40px auto 25px;
+  font-size: 50px;
 
-    display: grid;
+  line-height: 1;
+}
 
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+.count-label {
+  margin-top: 12px;
 
-    gap: 8px;
-  }
+  font-size: 7px;
 
-  .countdown-glass {
+  letter-spacing: 0.25em;
 
-    min-height: 135px;
+  opacity: 0.62;
+}
 
-    border-radius: 20px;
+.count-date {
+  margin-top: 20px;
 
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
-  }
+  font-size: 7px;
 
-  .count-number {
+  letter-spacing: 0.28em;
 
-    font-size: 48px;
-  }
+  opacity: 0.6;
+}
 
-  .count-label {
 
-    margin-top: 12px;
+/* ============================================================
+   GALLERY
+   ============================================================ */
 
-    font-size: 7px;
+.gallery-section {
+  position: relative;
 
-    letter-spacing: 0.25em;
-  }
+  background: #e8e2dc;
 
-  .count-date {
+  padding: 95px 6% 65px;
 
-    margin-top: 20px;
+  overflow: hidden;
+}
 
-    font-size: 7px;
+.gallery-introduction {
+  width: 100%;
 
-    letter-spacing: 0.27em;
-  }
+  margin-bottom: 65px;
+}
 
+.gallery-introduction h2 {
+  margin-top: 18px;
 
-  /* ----------------------------------------------------------
-     GALLERY
-     ---------------------------------------------------------- */
+  font-family: var(--serif);
 
-  .gallery-section {
+  font-size: 21vw;
 
-    width: 100%;
+  font-weight: 400;
 
-    padding: 90px 18px 70px;
+  line-height: 0.83;
 
-    overflow: hidden;
-  }
+  letter-spacing: -0.06em;
+}
 
-  .gallery-introduction {
+.gallery-introduction h2 em {
+  font-style: italic;
+}
 
-    width: 100%;
+.gallery-introduction > div:last-child p {
+  max-width: 300px;
 
-    margin-bottom: 60px;
-  }
+  margin-top: 30px;
 
-  .gallery-introduction h2 {
+  font-size: 11px;
 
-    margin-top: 15px;
+  line-height: 1.8;
 
-    font-size: clamp(65px, 20vw, 105px);
+  opacity: 0.62;
+}
 
-    line-height: 0.84;
 
-    letter-spacing: -0.065em;
-  }
+/* ============================================================
+   GALLERY COLLAGE
+   ============================================================ */
 
-  .gallery-introduction > div:last-child p {
+.gallery-collage {
+  position: relative;
 
-    max-width: 280px;
+  width: 100%;
 
-    margin-top: 25px;
+  min-height: 1300px;
+}
 
-    font-size: 11px;
+.gallery-image {
+  position: absolute;
 
-    line-height: 1.8;
-  }
+  overflow: hidden;
+}
 
+.gallery-image img {
+  width: 100%;
+  height: 100%;
 
-  /* ----------------------------------------------------------
-     GALLERY COLLAGE
-     ---------------------------------------------------------- */
+  object-fit: cover;
 
-  .gallery-collage {
+  transition:
+    transform 1.2s cubic-bezier(.16,1,.3,1);
+}
 
-    width: 100%;
+.gallery-image:hover img {
+  transform: scale(1.04);
+}
 
-    min-height: 1250px;
 
-    position: relative;
-  }
+/* LARGE */
 
-  .gallery-image {
-    position: absolute;
+.gallery-large {
+  width: 72%;
+  height: 380px;
 
-    overflow: hidden;
-  }
+  left: 0;
+  top: 0;
+}
 
-  .gallery-large {
 
-    width: 76%;
-    height: 350px;
+/* SMALL */
 
-    left: 0;
-    top: 0;
-  }
+.gallery-small {
+  width: 43%;
+  height: 225px;
 
-  .gallery-small {
+  right: 0;
+  top: 275px;
+}
 
-    width: 43%;
-    height: 220px;
 
-    right: 0;
-    top: 255px;
-  }
+/* TALL */
 
-  .gallery-tall {
+.gallery-tall {
+  width: 49%;
+  height: 345px;
 
-    width: 48%;
-    height: 330px;
+  right: 5%;
+  top: 535px;
+}
 
-    right: 5%;
-    top: 510px;
-  }
 
-  .gallery-wide {
+/* WIDE */
 
-    width: 70%;
-    height: 250px;
+.gallery-wide {
+  width: 67%;
+  height: 255px;
 
-    left: 0;
-    top: 680px;
-  }
+  left: 0;
+  top: 695px;
+}
 
-  .gallery-small-two {
 
-    width: 42%;
-    height: 220px;
+/* SMALL TWO */
 
-    left: 8%;
-    top: 900px;
-  }
+.gallery-small-two {
+  width: 42%;
+  height: 225px;
 
-  .gallery-final {
+  left: 8%;
+  top: 925px;
+}
 
-    width: 58%;
-    height: 300px;
 
-    right: 0;
-    top: 1000px;
-  }
+/* FINAL */
 
-  .gallery-bottom-text {
+.gallery-final {
+  width: 60%;
+  height: 315px;
 
-    margin-top: 35px;
+  right: 0;
+  top: 1025px;
+}
 
-    padding-top: 20px;
+.gallery-bottom-text {
+  display: flex;
 
-    font-size: 7px;
+  justify-content: space-between;
 
-    letter-spacing: 0.25em;
-  }
+  margin-top: 45px;
 
+  padding-top: 22px;
 
-  /* ----------------------------------------------------------
-     VENUES
-     ---------------------------------------------------------- */
+  border-top:
+    1px solid rgba(40,37,34,0.2);
 
-  .venues-section {
+  font-size: 7px;
 
-    width: 100%;
+  letter-spacing: 0.28em;
 
-    min-height: auto;
+  opacity: 0.55;
+}
 
-    padding: 90px 18px 80px;
 
-    overflow: hidden;
-  }
+/* ============================================================
+   VENUES
+   ============================================================ */
 
-  .venues-background {
+.venues-section {
+  position: relative;
 
-    inset: 0;
+  min-height: auto;
 
-    background-size: cover;
-    background-position: center;
-  }
+  padding: 95px 6% 75px;
 
-  .venues-dark {
+  overflow: hidden;
 
-    background: rgba(28,24,20,0.67);
-  }
+  color: white;
+}
 
-  .venues-title {
+.venues-background {
+  position: absolute;
+  inset: 0;
 
-    margin-bottom: 50px;
-  }
+  background-image: url("/images/venue.jpg");
 
-  .venues-title h2 {
+  background-size: cover;
+  background-position: center;
 
-    margin-top: 15px;
+  transform: scale(1.04);
+}
 
-    font-size: clamp(62px, 19vw, 105px);
+.venues-dark {
+  position: absolute;
+  inset: 0;
 
-    line-height: 0.84;
+  background:
+    rgba(28,24,20,0.68);
+}
 
-    letter-spacing: -0.06em;
-  }
+.venues-content {
+  position: relative;
+  z-index: 2;
+}
 
-  .venue-grid {
+.venues-title {
+  margin-bottom: 50px;
+}
 
-    width: 100%;
+.venues-title h2 {
+  margin-top: 18px;
 
-    display: flex;
-    flex-direction: column;
+  font-family: var(--serif);
 
-    gap: 20px;
-  }
+  font-size: 21vw;
 
-  .venue-card {
+  font-weight: 400;
 
-    width: 100%;
-  }
+  line-height: 0.84;
 
-  .venue-card-photo {
+  letter-spacing: -0.055em;
+}
 
-    height: 310px;
-  }
+.venues-title h2 em {
+  font-style: italic;
+}
 
-  .venue-card-info {
+.venue-grid {
+  display: grid;
 
-    padding: 25px 22px;
-  }
+  grid-template-columns: 1fr;
 
-  .venue-type {
+  gap: 22px;
+}
 
-    font-size: 7px;
+.venue-card {
+  color: #282522;
 
-    letter-spacing: 0.27em;
-  }
+  background: #e8e2dc;
 
-  .venue-card h3 {
+  overflow: hidden;
+}
 
-    margin: 14px 0 20px;
+.venue-card-photo {
+  height: 330px;
 
-    font-size: 40px;
+  overflow: hidden;
+}
 
-    line-height: 0.95;
-  }
+.venue-card-photo img {
+  width: 100%;
+  height: 100%;
 
-  .venue-address {
+  object-fit: cover;
 
-    max-width: 280px;
+  transition:
+    transform 1.2s cubic-bezier(.16,1,.3,1);
+}
 
-    font-size: 10px;
+.venue-card:hover .venue-card-photo img {
+  transform: scale(1.05);
+}
 
-    line-height: 1.6;
-  }
+.venue-card-info {
+  padding: 25px;
+}
 
-  .map-link {
+.venue-type {
+  font-size: 7px;
 
-    margin-top: 25px;
+  letter-spacing: 0.28em;
 
-    padding: 12px 16px;
+  opacity: 0.5;
+}
 
-    font-size: 7px;
+.venue-card h3 {
+  margin: 16px 0 22px;
 
-    letter-spacing: 0.25em;
-  }
+  font-family: var(--serif);
 
+  font-size: 42px;
 
-  /* ----------------------------------------------------------
-     DRESS CODE
-     ---------------------------------------------------------- */
+  font-weight: 400;
 
-  .dress-section {
+  line-height: 0.95;
 
-    width: 100%;
+  letter-spacing: -0.04em;
+}
 
-    min-height: 90svh;
+.venue-address {
+  display: flex;
 
-    padding: 70px 22px;
-  }
+  gap: 9px;
 
-  .dress-photo {
+  max-width: 290px;
 
-    background-position: center;
-  }
+  font-size: 10px;
 
-  .dress-overlay {
+  line-height: 1.6;
 
-    background: rgba(26,22,19,0.65);
-  }
+  opacity: 0.6;
+}
 
-  .dress-content {
+.map-link {
+  display: inline-flex;
 
-    width: 100%;
-    max-width: 340px;
+  align-items: center;
 
-    padding: 50px 0;
-  }
+  gap: 10px;
 
-  .dress-content h2 {
+  margin-top: 27px;
 
-    margin-top: 15px;
+  padding: 12px 16px;
 
-    font-size: clamp(65px, 20vw, 110px);
+  border:
+    1px solid rgba(40,37,34,0.4);
 
-    line-height: 0.84;
+  font-size: 7px;
 
-    letter-spacing: -0.06em;
-  }
+  letter-spacing: 0.25em;
 
-  .dress-line {
+  transition: all 0.3s ease;
+}
 
-    width: 50px;
+.map-link:hover {
+  background: #282522;
+  color: white;
+}
 
-    margin: 35px auto;
-  }
 
-  .dress-style {
+/* ============================================================
+   DRESS CODE
+   ============================================================ */
 
-    font-size: 25px;
-  }
+.dress-section {
+  position: relative;
 
-  .dress-subtitle {
+  min-height: 88svh;
 
-    margin-top: 6px;
+  display: flex;
 
-    font-size: 16px;
+  align-items: center;
+  justify-content: center;
 
-    letter-spacing: 0.25em;
-  }
+  overflow: hidden;
 
-  .dress-description {
+  color: white;
 
-    max-width: 280px;
+  text-align: center;
+}
 
-    margin: 25px auto 0;
+.dress-photo {
+  position: absolute;
+  inset: 0;
 
-    font-size: 10px;
+  background-image: url("/images/dress.jpg");
 
-    line-height: 1.8;
-  }
+  background-size: cover;
+  background-position: center;
+}
 
+.dress-overlay {
+  position: absolute;
+  inset: 0;
 
-  /* ----------------------------------------------------------
-     FINAL
-     ---------------------------------------------------------- */
+  background:
+    rgba(26,22,19,0.65);
+}
 
-  .final-section {
+.dress-content {
+  position: relative;
+  z-index: 2;
 
-    width: 100%;
+  width: 100%;
 
-    min-height: 80svh;
+  max-width: 370px;
 
-    padding: 90px 20px;
-  }
+  padding: 75px 25px;
+}
 
-  .final-names {
+.dress-content h2 {
+  margin-top: 18px;
 
-    width: 100%;
+  font-family: var(--serif);
 
-    flex-direction: column;
+  font-size: 22vw;
 
-    gap: 12px;
+  font-weight: 400;
 
-    margin-top: 25px;
+  line-height: 0.85;
 
-    font-size: clamp(62px, 19vw, 105px);
+  letter-spacing: -0.06em;
+}
 
-    line-height: 0.82;
+.dress-line {
+  width: 55px;
+  height: 1px;
 
-    letter-spacing: -0.065em;
-  }
+  margin: 38px auto;
 
-  .final-names i {
+  background: rgba(255,255,255,0.5);
+}
 
-    font-size: 35px;
-  }
+.dress-style {
+  font-family: var(--serif);
 
-  .final-date {
+  font-size: 27px;
+}
 
-    margin-top: 25px;
+.dress-subtitle {
+  font-family: var(--serif);
 
-    font-size: 8px;
+  margin-top: 7px;
 
-    letter-spacing: 0.28em;
-  }
+  font-size: 16px;
 
-  .final-heart {
+  letter-spacing: 0.25em;
+}
 
-    margin-top: 55px;
+.dress-description {
+  max-width: 300px;
 
-    font-size: 15px;
-  }
+  margin: 30px auto 0;
 
+  font-size: 10px;
 
-  /* ----------------------------------------------------------
-     EVENT INFORMATION
-     ---------------------------------------------------------- */
+  line-height: 1.9;
 
-  .event-info-boxes {
+  opacity: 0.65;
+}
 
-    width: calc(100% - 30px);
 
-    max-width: 420px;
+/* ============================================================
+   EVENT INFORMATION
+   ============================================================ */
 
-    margin: 35px auto 60px;
+.event-info-boxes {
+  width: calc(100% - 32px);
 
-    display: flex;
+  max-width: 430px;
 
-    flex-direction: column;
+  margin: 38px auto 65px;
 
-    gap: 20px;
-  }
+  display: flex;
 
-  .event-info-box {
+  flex-direction: column;
 
-    width: 100%;
+  align-items: center;
 
-    min-height: 440px;
+  gap: 25px;
+}
 
-    padding: 45px 20px;
+.event-info-box {
+  width: 100%;
 
-    border-radius: 0;
-  }
+  min-height: 455px;
 
-  .event-info-type {
+  padding: 45px 20px;
 
-    margin-bottom: 25px;
+  background: #465f91;
 
-    font-size: 8px;
+  color: #ffffff;
 
-    letter-spacing: 0.25em;
-  }
+  border:
+    1px solid rgba(190,145,125,0.85);
 
-  .event-info-day {
+  display: flex;
 
-    font-size: 37px;
+  flex-direction: column;
 
-    line-height: 1.05;
-  }
+  justify-content: center;
 
-  .event-info-date {
+  align-items: center;
 
-    margin-top: 10px;
+  text-align: center;
 
-    font-size: 28px;
+  position: relative;
 
-    line-height: 1.15;
+  overflow: hidden;
 
-    white-space: normal;
-  }
+  box-shadow:
+    0 20px 50px rgba(0,0,0,0.14);
 
-  .event-info-time {
+  transition:
+    transform 0.45s ease,
+    box-shadow 0.45s ease;
+}
 
-    margin-top: 18px;
+.event-info-box::before {
+  content: "";
 
-    font-size: 8px;
+  position: absolute;
 
-    letter-spacing: 0.24em;
-  }
+  width: 250px;
+  height: 250px;
 
-  .event-info-line {
+  border-radius: 50%;
 
-    width: 40px;
+  top: -145px;
+  right: -100px;
 
-    margin: 26px 0 22px;
-  }
+  background:
+    rgba(255,255,255,0.055);
 
-  .event-info-venue {
+  filter: blur(10px);
 
-    width: 100%;
+  pointer-events: none;
+}
 
-    max-width: 290px;
+.event-info-box::after {
+  content: "";
 
-    font-size: 22px;
+  position: absolute;
 
-    line-height: 1.15;
-  }
+  width: 180px;
+  height: 180px;
 
-  .event-info-location {
+  border-radius: 50%;
 
-    width: 100%;
+  bottom: -115px;
+  left: -75px;
 
-    max-width: 290px;
+  background:
+    rgba(20,40,80,0.12);
 
-    margin-top: 7px;
+  filter: blur(12px);
 
-    font-size: 17px;
+  pointer-events: none;
+}
 
-    line-height: 1.25;
-  }
+.event-info-box:hover {
+  transform: translateY(-4px);
+
+  box-shadow:
+    0 25px 55px rgba(0,0,0,0.18);
+}
+
+.event-info-type {
+  position: relative;
+  z-index: 2;
+
+  margin: 0 0 27px;
+
+  font-family: var(--sans);
+
+  font-size: 8px;
+
+  line-height: 1.2;
+
+  letter-spacing: 0.28em;
+
+  font-weight: 500;
+
+  text-transform: uppercase;
+
+  white-space: nowrap;
+}
+
+.event-info-day {
+  position: relative;
+  z-index: 2;
+
+  margin: 0;
+
+  font-family: var(--serif);
+
+  font-size: 39px;
+
+  line-height: 1.05;
+
+  font-weight: 400;
+}
+
+.event-info-date {
+  position: relative;
+  z-index: 2;
+
+  margin: 11px 0 0;
+
+  font-family: var(--serif);
+
+  font-size: 29px;
+
+  line-height: 1.15;
+
+  font-weight: 400;
+
+  white-space: nowrap;
+}
+
+.event-info-time {
+  position: relative;
+  z-index: 2;
+
+  margin: 18px 0 0;
+
+  font-family: var(--sans);
+
+  font-size: 8px;
+
+  line-height: 1;
+
+  letter-spacing: 0.25em;
+
+  text-transform: uppercase;
+
+  opacity: 0.82;
+}
+
+.event-info-line {
+  position: relative;
+  z-index: 2;
+
+  width: 42px;
+  height: 1px;
+
+  flex-shrink: 0;
+
+  background:
+    rgba(255,255,255,0.4);
+
+  margin: 27px 0 22px;
+}
+
+.event-info-venue {
+  position: relative;
+  z-index: 2;
+
+  width: 100%;
+
+  max-width: 290px;
+
+  margin: 0;
+
+  font-family: var(--serif);
+
+  font-size: 23px;
+
+  line-height: 1.12;
+
+  font-weight: 400;
+
+  overflow-wrap: break-word;
+}
+
+.event-info-location {
+  position: relative;
+  z-index: 2;
+
+  width: 100%;
+
+  max-width: 290px;
+
+  margin: 8px 0 0;
+
+  font-family: var(--serif);
+
+  font-size: 17px;
+
+  line-height: 1.25;
+
+  opacity: 0.82;
+
+  overflow-wrap: break-word;
+}
+
+
+/* ============================================================
+   FINAL
+   ============================================================ */
+
+.final-section {
+  min-height: 80svh;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 100px 22px;
+
+  background: #eae5df;
+
+  text-align: center;
+}
+
+.final-names {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 12px;
+
+  margin-top: 30px;
+
+  font-family: var(--serif);
+
+  font-size: 21vw;
+
+  line-height: 0.8;
+
+  letter-spacing: -0.06em;
+}
+
+.final-names i {
+  font-size: 38px;
+
+  font-style: italic;
+}
+
+.final-date {
+  margin-top: 30px;
+
+  font-size: 8px;
+
+  letter-spacing: 0.3em;
+
+  opacity: 0.5;
+}
+
+.final-heart {
+  margin-top: 60px;
+
+  font-size: 16px;
 
+  opacity: 0.35;
 }
 
 
@@ -1003,55 +1502,44 @@
    VERY SMALL PHONES
    ============================================================ */
 
-@media screen and (max-width: 380px) {
+@media (max-width: 380px) {
 
-  .hero-section {
+  .hero-content {
     padding: 0 14px;
   }
 
   .hero-title-wrapper h1 {
-
-    /*
-      Smaller phones need this.
-      16.5vw keeps the complete title inside
-      320px–380px screens.
-    */
-    font-size: 16.5vw;
-
-    letter-spacing: -0.075em;
-  }
-
-  .hero-intro {
-    font-size: 8px;
+    font-size: 23vw;
+    letter-spacing: -0.08em;
   }
 
   .hero-couple {
+    gap: 9px;
     font-size: 7px;
-    gap: 8px;
   }
 
   .hero-couple i {
-    font-size: 20px;
-  }
-
-  .hero-date {
-    font-size: 10px;
+    font-size: 22px;
   }
 
   .welcome-content h2 {
-    font-size: 18vw;
+    font-size: 21vw;
+  }
+
+  .welcome-description {
+    font-size: 10px;
   }
 
   .couple-photo-content h2 {
-    font-size: 18vw;
-  }
-
-  .name-reveal h2 {
     font-size: 19vw;
   }
 
-  .countdown-content h2 {
-    font-size: 18vw;
+  .name-reveal h2 {
+    font-size: 22vw;
+  }
+
+  .countdown-grid {
+    gap: 7px;
   }
 
   .countdown-glass {
@@ -1059,25 +1547,65 @@
   }
 
   .count-number {
-    font-size: 43px;
+    font-size: 46px;
   }
 
-  .gallery-introduction h2 {
-    font-size: 19vw;
+  .gallery-collage {
+    min-height: 1250px;
   }
 
-  .venues-title h2 {
-    font-size: 18vw;
+  .gallery-large {
+    height: 350px;
   }
 
-  .dress-content h2 {
-    font-size: 19vw;
+  .gallery-small {
+    top: 255px;
+    height: 210px;
+  }
+
+  .gallery-tall {
+    top: 500px;
+    height: 320px;
+  }
+
+  .gallery-wide {
+    top: 650px;
+    height: 240px;
+  }
+
+  .gallery-small-two {
+    top: 875px;
+    height: 210px;
+  }
+
+  .gallery-final {
+    top: 970px;
+    height: 290px;
+  }
+
+  .event-info-box {
+    min-height: 440px;
+  }
+
+  .event-info-day {
+    font-size: 36px;
+  }
+
+  .event-info-date {
+    font-size: 27px;
+  }
+
+  .event-info-venue {
+    font-size: 21px;
+  }
+
+  .event-info-location {
+    font-size: 16px;
   }
 
   .final-names {
-    font-size: 18vw;
+    font-size: 20vw;
   }
-
 }
 
 
@@ -1098,5 +1626,4 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
-
 }
