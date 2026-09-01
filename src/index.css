@@ -293,28 +293,160 @@ img {
 }
 
 
+/* ============================================================
+   HERO TITLE
+   ============================================================ */
+
 .hero-title-wrapper {
 
+  width: 100%;
+
   overflow: hidden;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  box-sizing: border-box;
 
 }
 
 
 .hero-title-wrapper h1 {
 
-  font-family:
-    var(--serif);
+  width: 100%;
+
+  margin: 0;
+
+  padding: 0 12px;
+
+  box-sizing: border-box;
+
+  text-align: center;
+
+  font-family: var(--serif);
 
   font-weight: 400;
 
-  font-size:
-    clamp(90px, 15vw, 210px);
-
+  font-size: clamp(90px, 15vw, 210px);
 
   line-height: 0.82;
 
-  letter-spacing:
-    -0.055em;
+  letter-spacing: -0.055em;
+
+  white-space: nowrap;
+
+}
+
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media screen and (max-width: 700px) {
+
+  .hero-title-wrapper {
+
+    width: 100%;
+
+    padding: 0 8px;
+
+    overflow: hidden;
+
+    box-sizing: border-box;
+
+  }
+
+
+  .hero-title-wrapper h1 {
+
+    width: 100%;
+
+    padding: 0;
+
+    margin: 0;
+
+    font-size: clamp(55px, 16.5vw, 105px);
+
+    line-height: 0.85;
+
+    letter-spacing: -0.065em;
+
+    text-align: center;
+
+    white-space: nowrap;
+
+    box-sizing: border-box;
+
+  }
+
+
+  /* ==========================================================
+     HERO INTRO
+     ========================================================== */
+
+  .hero-intro {
+
+    font-size: 10px;
+
+  }
+
+
+  /* ==========================================================
+     HERO COUPLE
+     ========================================================== */
+
+  .hero-couple {
+
+    margin-top: 30px;
+
+    font-size: 8px;
+
+  }
+
+}
+
+
+/* ============================================================
+   VERY SMALL PHONES
+   ============================================================ */
+
+@media screen and (max-width: 380px) {
+
+  .hero-title-wrapper {
+
+    padding: 0 5px;
+
+  }
+
+
+  .hero-title-wrapper h1 {
+
+    font-size: 15vw;
+
+    letter-spacing: -0.07em;
+
+    line-height: 0.86;
+
+  }
+
+
+  .hero-intro {
+
+    font-size: 9px;
+
+  }
+
+
+  .hero-couple {
+
+    margin-top: 25px;
+
+    font-size: 7px;
+
+  }
 
 }
 
