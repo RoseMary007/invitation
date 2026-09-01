@@ -1654,7 +1654,7 @@ img {
     font-weight: 400;
 
     /* SMALL ENOUGH TO COMPLETELY FIT */
-    font-size: 120px !important;
+    font-size: 120px ;
 
     line-height: 0.9;
 
