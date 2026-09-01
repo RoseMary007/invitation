@@ -174,9 +174,10 @@ img {
 }
 
 .hero-intro {
-  font-size: 13px;
+  font-size: 20px;
   letter-spacing: 0.28em;
   font-weight: 300;
+    font-family: 'trajan-pro-3', serif;
 }
 
 
@@ -207,7 +208,7 @@ img {
   font-size: clamp(48px, 17vw, 92px);
 
   line-height: 0.9;
-  letter-spacing: -0.055em;
+  letter-spacing: 0.04em;
 
   text-align: center;
   white-space: nowrap;
@@ -243,8 +244,8 @@ img {
 
 .hero-date {
   margin-top: 15px;
-
-  font-size: 14px;
+  font-family: 'Lora', serif;
+  font-size: 20px;
   letter-spacing: 0.28em;
 }
 
