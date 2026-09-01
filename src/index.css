@@ -435,7 +435,7 @@ img {
   z-index: 2;
 
   left: 7%;
-  top: 42%;              /* was bottom: 9% — now anchored near the red-line zone */
+  top: 40%;              /* was bottom: 9% — now anchored near the red-line zone */
   transform: translateY(-50%);
 
   width: 86%;
