@@ -424,80 +424,7 @@ function Welcome() {
 }
 
 
-// ============================================================
-// COUPLE IMAGE
-// ============================================================
 
-function CoupleImage() {
-
-  return (
-
-    <section className="couple-photo-section">
-
-      <motion.div
-        className="couple-photo"
-
-        initial={{
-          scale: 1.08
-        }}
-
-        whileInView={{
-          scale: 1
-        }}
-
-        viewport={{
-          once: true
-        }}
-
-        transition={{
-          duration: 2,
-          ease: [0.16, 1, 0.3, 1]
-        }}
-      />
-
-      <div className="couple-photo-overlay" />
-
-
-      <div className="couple-photo-content">
-
-        <Reveal>
-
-          <p className="eyebrow">
-            TOGETHER
-          </p>
-
-        </Reveal>
-
-
-        <Reveal delay={0.15}>
-
-          <h2>
-
-            One love.
-            <br />
-
-            <em>One story.</em>
-
-          </h2>
-
-        </Reveal>
-
-      </div>
-
-
-      <div className="photo-caption">
-        Love stories are narratives focused on romantic relationships, 
-        emotional connection, and the journey of two people falling or staying
-         in love.Key Types of Love StoriesClassic Literature: Timeless novels like 
-         Jane Austen's Pride and Prejudice explore social standing, wit, and personal
-          growth alongside romance.Tragic and Historical: Tales like Shakespeare's Romeo and Juliet or real-world epics focus on sacrifice, societal barriers, and deep loss.Modern and Contemporary: Everyday accounts of real people meeting, overcoming obstacles, and building long-term partnerships.Common Tro
-      </div>
-
-    </section>
-
-  );
-
-}
 
 
 // ============================================================
@@ -615,227 +542,73 @@ function PersonSection({
 
 }
 
-
 // ============================================================
-// COUNTDOWN
+// COUPLE IMAGE
 // ============================================================
 
-function Countdown() {
-
-  const calculate = () => {
-
-    const target =
-      new Date(WEDDING.date).getTime();
-
-    const now =
-      Date.now();
-
-    const difference =
-      target - now;
-
-
-    if (difference <= 0) {
-
-      return {
-        days: 0,
-        hours: 0,
-        minutes: 0,
-        seconds: 0
-      };
-
-    }
-
-
-    return {
-
-      days: Math.floor(
-        difference /
-        (1000 * 60 * 60 * 24)
-      ),
-
-      hours: Math.floor(
-        (difference /
-          (1000 * 60 * 60)) %
-          24
-      ),
-
-      minutes: Math.floor(
-        (difference /
-          (1000 * 60)) %
-          60
-      ),
-
-      seconds: Math.floor(
-        (difference / 1000) %
-        60
-      )
-
-    };
-
-  };
-
-
-  const [time, setTime] =
-    useState(calculate());
-
-
-  useEffect(() => {
-
-    const interval =
-      setInterval(() => {
-
-        setTime(calculate());
-
-      }, 1000);
-
-
-    return () =>
-      clearInterval(interval);
-
-  }, []);
-
-
-  const values = [
-
-    {
-      number: time.days,
-      label: "DAYS"
-    },
-
-    {
-      number: time.hours,
-      label: "HOURS"
-    },
-
-    {
-      number: time.minutes,
-      label: "MINUTES"
-    },
-
-    {
-      number: time.seconds,
-      label: "SECONDS"
-    }
-
-  ];
-
+function CoupleImage() {
 
   return (
 
-    <section
-      className="countdown-section"
-    >
+    <section className="couple-photo-section">
 
-      {/* BACKGROUND PHOTO */}
+      <motion.div
+        className="couple-photo"
 
-      <div className="countdown-photo" />
+        initial={{
+          scale: 1.08
+        }}
 
-      <div className="countdown-overlay" />
+        whileInView={{
+          scale: 1
+        }}
+
+        viewport={{
+          once: true
+        }}
+
+        transition={{
+          duration: 2,
+          ease: [0.16, 1, 0.3, 1]
+        }}
+      />
+
+      <div className="couple-photo-overlay" />
 
 
-      <div className="countdown-content">
+      <div className="couple-photo-content">
 
         <Reveal>
 
           <p className="eyebrow">
-            UNTIL WE SAY I DO
+            TOGETHER
           </p>
 
         </Reveal>
 
 
-        <Reveal delay={0.1}>
+        <Reveal delay={0.15}>
 
           <h2>
-            The countdown
+
+            One love.
+            <br />
+
+            <em>One story.</em>
+
           </h2>
 
         </Reveal>
 
-
-        <div className="countdown-grid">
-
-          {values.map(
-            (item, index) => (
-
-              <motion.div
-                key={item.label}
-                className="countdown-glass"
-
-                initial={{
-                  opacity: 0,
-                  y: 40
-                }}
-
-                whileInView={{
-                  opacity: 1,
-                  y: 0
-                }}
-
-                viewport={{
-                  once: true
-                }}
-
-                transition={{
-                  delay: index * 0.08,
-                  duration: 0.8
-                }}
-
-                whileHover={{
-                  y: -8
-                }}
-              >
-
-                <div className="glass-light" />
+      </div>
 
 
-                <motion.div
-                  className="count-number"
-
-                  key={item.number}
-
-                  initial={{
-                    opacity: 0,
-                    scale: 0.85
-                  }}
-
-                  animate={{
-                    opacity: 1,
-                    scale: 1
-                  }}
-
-                  transition={{
-                    duration: 0.3
-                  }}
-                >
-
-                  {String(
-                    item.number
-                  ).padStart(2, "0")}
-
-                </motion.div>
-
-
-                <span className="count-label">
-                  {item.label}
-                </span>
-
-              </motion.div>
-
-            )
-          )}
-
-        </div>
-
-
-        <Reveal delay={0.25}>
-
-          <p className="count-date">
-            {WEDDING.dateText}
-          </p>
-
-        </Reveal>
-
+      <div className="photo-caption">
+        Love stories are narratives focused on romantic relationships, 
+        emotional connection, and the journey of two people falling or staying
+         in love.Key Types of Love StoriesClassic Literature: Timeless novels like 
+         Jane Austen's Pride and Prejudice explore social standing, wit, and personal
+          growth alongside romance.Tragic and Historical: Tales like Shakespeare's Romeo and Juliet or real-world epics focus on sacrifice, societal barriers, and deep loss.Modern and Contemporary: Everyday accounts of real people meeting, overcoming obstacles, and building long-term partnerships.Common Tro
       </div>
 
     </section>
@@ -1005,7 +778,7 @@ function Gallery() {
       <div className="gallery-bottom-text">
 
         <span>
-          MORE MEMORIES
+          MORE MEMORIES TO CREATE
         </span>
 
         <span>
@@ -1423,6 +1196,235 @@ function DressCode() {
 
 
 // ============================================================
+// COUNTDOWN
+// ============================================================
+
+function Countdown() {
+
+  const calculate = () => {
+
+    const target =
+      new Date(WEDDING.date).getTime();
+
+    const now =
+      Date.now();
+
+    const difference =
+      target - now;
+
+
+    if (difference <= 0) {
+
+      return {
+        days: 0,
+        hours: 0,
+        minutes: 0,
+        seconds: 0
+      };
+
+    }
+
+
+    return {
+
+      days: Math.floor(
+        difference /
+        (1000 * 60 * 60 * 24)
+      ),
+
+      hours: Math.floor(
+        (difference /
+          (1000 * 60 * 60)) %
+          24
+      ),
+
+      minutes: Math.floor(
+        (difference /
+          (1000 * 60)) %
+          60
+      ),
+
+      seconds: Math.floor(
+        (difference / 1000) %
+        60
+      )
+
+    };
+
+  };
+
+
+  const [time, setTime] =
+    useState(calculate());
+
+
+  useEffect(() => {
+
+    const interval =
+      setInterval(() => {
+
+        setTime(calculate());
+
+      }, 1000);
+
+
+    return () =>
+      clearInterval(interval);
+
+  }, []);
+
+
+  const values = [
+
+    {
+      number: time.days,
+      label: "DAYS"
+    },
+
+    {
+      number: time.hours,
+      label: "HOURS"
+    },
+
+    {
+      number: time.minutes,
+      label: "MINUTES"
+    },
+
+    {
+      number: time.seconds,
+      label: "SECONDS"
+    }
+
+  ];
+
+
+  return (
+
+    <section
+      className="countdown-section"
+    >
+
+      {/* BACKGROUND PHOTO */}
+
+      <div className="countdown-photo" />
+
+      <div className="countdown-overlay" />
+
+
+      <div className="countdown-content">
+
+        <Reveal>
+
+          <p className="eyebrow">
+            UNTIL WE SAY I DO
+          </p>
+
+        </Reveal>
+
+
+        <Reveal delay={0.1}>
+
+          <h2>
+            The countdown
+          </h2>
+
+        </Reveal>
+
+
+        <div className="countdown-grid">
+
+          {values.map(
+            (item, index) => (
+
+              <motion.div
+                key={item.label}
+                className="countdown-glass"
+
+                initial={{
+                  opacity: 0,
+                  y: 40
+                }}
+
+                whileInView={{
+                  opacity: 1,
+                  y: 0
+                }}
+
+                viewport={{
+                  once: true
+                }}
+
+                transition={{
+                  delay: index * 0.08,
+                  duration: 0.8
+                }}
+
+                whileHover={{
+                  y: -8
+                }}
+              >
+
+                <div className="glass-light" />
+
+
+                <motion.div
+                  className="count-number"
+
+                  key={item.number}
+
+                  initial={{
+                    opacity: 0,
+                    scale: 0.85
+                  }}
+
+                  animate={{
+                    opacity: 1,
+                    scale: 1
+                  }}
+
+                  transition={{
+                    duration: 0.3
+                  }}
+                >
+
+                  {String(
+                    item.number
+                  ).padStart(2, "0")}
+
+                </motion.div>
+
+
+                <span className="count-label">
+                  {item.label}
+                </span>
+
+              </motion.div>
+
+            )
+          )}
+
+        </div>
+
+
+        <Reveal delay={0.25}>
+
+          <p className="count-date">
+            {WEDDING.dateText}
+          </p>
+
+        </Reveal>
+
+      </div>
+
+    </section>
+
+  );
+
+}
+
+
+// ============================================================
 // FOOTER
 // ============================================================
 
@@ -1534,7 +1536,7 @@ export default function App() {
 
       <Welcome />
 
-      <CoupleImage />
+      
 
       <PersonSection
         image="/images/groom.jpg"
@@ -1551,11 +1553,8 @@ export default function App() {
         align="right"
       />
 
-      {/* COUNTDOWN */}
+      <CoupleImage />
 
-      <Countdown />
-
-      {/* GALLERY BETWEEN COUNTDOWN + BRIDE */}
 
       <Gallery />
 
@@ -1564,6 +1563,8 @@ export default function App() {
       <Venues />
 
       <DressCode />
+
+       <Countdown />
 
       <Footer />
 

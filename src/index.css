@@ -4,7 +4,7 @@
    ============================================================ */
 
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Italiana&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap');
 /* ============================================================
    RESET
    ============================================================ */
@@ -42,6 +42,7 @@ img {
   --dark: #25221f;
   --white: #ffffff;
   --serif: "Italiana", Georgia, serif;
+  --see: "Cormorant Garamond", Georgia, serif;
   --sans: "DM Sans", sans-serif;
 }
 
@@ -154,9 +155,9 @@ img {
   background:
     linear-gradient(
       to bottom,
-      rgba(10, 47, 193, 0.2),
-      rgba(7, 80, 144, 0.08) 45%,
-      rgba(1, 34, 67, 0.68)
+      rgba(0,0,0,0.20),
+      rgba(0,0,0,0.08) 45%,
+      rgba(0,0,0,0.68)
     );
 }
 
@@ -198,11 +199,11 @@ img {
   padding: 0;
   margin: 0;
 
-  font-family: var(--serif);
+  font-family: var(--see);
   font-weight: 400;
 
   /* Fits "BETROTHED" completely on a phone */
-  font-size: clamp(52px, 17vw, 78px);
+  font-size: clamp(92px, 17vw, 78px);
 
   line-height: 0.9;
   letter-spacing: -0.055em;
