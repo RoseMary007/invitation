@@ -435,7 +435,8 @@ img {
   z-index: 2;
 
   left: 7%;
-  bottom: 9%;
+  top: 42%;              /* was bottom: 9% — now anchored near the red-line zone */
+  transform: translateY(-50%);
 
   width: 86%;
 }
@@ -445,9 +446,9 @@ img {
 
   font-family: var(--serif);
 
-  font-size: 20vw;
+  font-size: 12vw;        /* was 20vw — too large, was overflowing past the marked area */
 
-  line-height: 0.84;
+  line-height: 0.9;
 
   font-weight: 400;
 
