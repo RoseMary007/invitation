@@ -794,6 +794,7 @@ function Gallery() {
 }
 
 
+
 // ============================================================
 // VENUE CARD
 // ============================================================
@@ -803,13 +804,16 @@ function VenueCard({
   venue,
   address,
   image,
-  map
+  map,
+  time,
+  date
 }) {
 
   return (
 
     <Reveal className="venue-card">
 
+      {/* PHOTO */}
       <div className="venue-card-photo">
 
         <img
@@ -820,18 +824,22 @@ function VenueCard({
       </div>
 
 
+      {/* CARD INFORMATION */}
       <div className="venue-card-info">
 
+        {/* EVENT TYPE */}
         <p className="venue-type">
           {type}
         </p>
 
 
+        {/* VENUE NAME */}
         <h3>
           {venue}
         </h3>
 
 
+        {/* ADDRESS */}
         <div className="venue-address">
 
           <MapPin size={16} />
@@ -843,6 +851,23 @@ function VenueCard({
         </div>
 
 
+        {/* TIME */}
+        <div className="venue-event-time">
+
+          <span>
+            {time}
+          </span>
+
+        </div>
+
+
+        {/* DATE */}
+        <p className="venue-event-date">
+          {date}
+        </p>
+
+
+        {/* MAP */}
         <a
           href={map}
           target="_blank"
@@ -889,6 +914,10 @@ function Venues() {
 
       <div className="venues-content">
 
+        {/* ====================================================
+            SECTION TITLE
+            ==================================================== */}
+
         <div className="venues-title">
 
           <Reveal>
@@ -915,98 +944,21 @@ function Venues() {
 
         </div>
 
-       {/* ============================================================
-    EVENT INFORMATION BOXES
-    ============================================================ */}
 
-<div className="event-info-boxes">
-
-  {/* ================= BETROTHAL ================= */}
-
-  <Reveal>
-
-    <div className="event-info-box">
-
-      <p className="event-info-type">
-        THE BETROTHAL
-      </p>
-
-      <p className="event-info-day">
-        Sunday
-      </p>
-
-      <p className="event-info-date">
-        27 September 2026
-      </p>
-
-      <p className="event-info-time">
-        03:00 PM
-      </p>
-
-      <div className="event-info-line" />
-
-      <p className="event-info-venue">
-        St Mary's Forane Chruch
-      </p>
-
-      <p className="event-info-location">
-        Korraty, Trissur
-      </p>
-
-    </div>
-
-  </Reveal>
-
-
-  {/* ================= RECEPTION ================= */}
-
-  <Reveal delay={0.15}>
-
-    <div className="event-info-box">
-
-      <p className="event-info-type">
-        RECEPTION
-      </p>
-
-      <p className="event-info-day">
-        Sunday
-      </p>
-
-      <p className="event-info-date">
-        27 September 2026
-      </p>
-
-      <p className="event-info-time">
-        06:30 PM
-      </p>
-
-      <div className="event-info-line" />
-
-      <p className="event-info-venue">
-        Heartland convention centre
-      </p>
-
-      <p className="event-info-location">
-        Chalakudy,Trissur
-      </p>
-
-    </div>
-
-  </Reveal>
-
-</div>
-
-
-{/* ============================================================
-    YOUR EXISTING VENUE CARDS — DO NOT CHANGE
-    ============================================================ */}
-
+        {/* ====================================================
+            TWO VENUE CARDS ONLY
+            ==================================================== */}
 
         <div className="venue-grid">
 
+
+          {/* ==================================================
+              CHURCH / BETROTHAL
+              ================================================== */}
+
           <VenueCard
 
-            type="ENGAGEMENT"
+            type="THE BETROTHAL"
 
             venue={
               WEDDING.church.name
@@ -1022,8 +974,16 @@ function Venues() {
               WEDDING.church.map
             }
 
+            time="3:00 PM"
+
+            date="Sunday, 27 September 2026"
+
           />
 
+
+          {/* ==================================================
+              RECEPTION
+              ================================================== */}
 
           <VenueCard
 
@@ -1043,6 +1003,10 @@ function Venues() {
               WEDDING.reception.map
             }
 
+            time="6:30 PM"
+
+            date="Sunday, 27 September 2026"
+
           />
 
         </div>
@@ -1054,6 +1018,8 @@ function Venues() {
   );
 
 }
+
+
 
 
 // ============================================================
