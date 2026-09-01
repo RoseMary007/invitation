@@ -308,7 +308,8 @@ img {
   font-weight: 400;
 
   font-size:
-    clamp(105px, 18vw, 250px);
+    clamp(90px, 15vw, 210px);
+
 
   line-height: 0.82;
 
@@ -355,7 +356,7 @@ img {
 
   margin-top: 18px;
 
-  font-size: 9px;
+  font-size: 15px;
 
   letter-spacing: 0.35em;
 
@@ -608,7 +609,7 @@ img {
 
   z-index: 2;
 
-  bottom: 11%;
+  bottom: 55%;
 
   left: 7%;
 
@@ -625,7 +626,7 @@ img {
   font-size:
     clamp(75px, 11vw, 155px);
 
-  line-height: 0.85;
+  line-height: 0.88;
 
   font-weight: 400;
 
@@ -650,11 +651,15 @@ img {
 
   bottom: 30px;
 
-  font-size: 8px;
+  font-size: 20px;
 
-  letter-spacing: 0.35em;
+  letter-spacing: 0.2em;
 
   opacity: 0.6;
+  font-family: var(--font-romantic-heading);
+  font-style: italic; /* Playfair italics are incredibly beautiful */
+  font-weight: 700;
+  color: #5c1d24;
 
 }
 
@@ -1618,20 +1623,23 @@ img {
   font-family:
     var(--serif);
 
-  font-size: 48px;
+  font-size: 30px;
 
 }
 
 
 .dress-subtitle {
-
+  font-family:
+    var(--serif);
   margin-top: 8px;
 
-  font-size: 8px;
+  font-size: 20px;
 
   letter-spacing: 0.32em;
 
-  opacity: 0.7;
+  
+   
+   
 
 }
 
@@ -2391,7 +2399,7 @@ img {
   font-family:
     var(--sans, Arial, sans-serif);
 
-  font-size: 10px;
+  font-size: 20px;
 
   line-height: 1;
 
