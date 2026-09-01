@@ -186,35 +186,32 @@ img {
 .hero-title-wrapper {
   width: 100%;
   overflow: hidden;
-
   display: flex;
   justify-content: center;
   align-items: center;
-
   margin-top: 18px;
+  padding: 0 10px;
 }
 
 .hero-title-wrapper h1 {
   width: 100%;
-
   padding: 0;
+  margin: 0;
 
   font-family: var(--serif);
   font-weight: 400;
 
-  /*
-     Large but controlled so the names
-     never escape the phone screen.
-  */
-  font-size: 120px;
+  /* Fits "BETROTHED" completely on a phone */
+  font-size: clamp(52px, 17vw, 78px);
 
-  line-height: 0.82;
-
-  letter-spacing: -0.075em;
+  line-height: 0.9;
+  letter-spacing: -0.055em;
 
   text-align: center;
-
   white-space: nowrap;
+
+  left: auto;
+  right: auto;
 }
 
 
