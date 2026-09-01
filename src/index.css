@@ -174,7 +174,7 @@ img {
 }
 
 .hero-intro {
-  font-size: 9px;
+  font-size: 13px;
   letter-spacing: 0.28em;
   font-weight: 300;
 }
@@ -192,6 +192,7 @@ img {
   align-items: center;
   margin-top: 18px;
   padding: 0 10px;
+ 
 }
 
 .hero-title-wrapper h1 {
@@ -221,12 +222,13 @@ img {
   display: flex;
   align-items: center;
   justify-content: center;
+  font-family: 'Playfair Display', serif;
 
   gap: 12px;
 
   margin-top: 30px;
 
-  font-size: 8px;
+  font-size: 20px;
   letter-spacing: 0.28em;
 }
 
@@ -242,7 +244,7 @@ img {
 .hero-date {
   margin-top: 15px;
 
-  font-size: 11px;
+  font-size: 14px;
   letter-spacing: 0.28em;
 }
 
