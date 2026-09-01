@@ -1625,53 +1625,7 @@ img {
   }
 }
 
-/* ============================================================
-   FINAL PHONE FIX — HERO TITLE
-   ============================================================ */
 
-@media screen and (max-width: 700px) {
-
-  .hero-title-wrapper {
-    width: 100%;
-    max-width: 100vw;
-    padding: 0 12px;
-    margin-top: 18px;
-    overflow: hidden;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .hero-title-wrapper h1 {
-    width: 100%;
-    max-width: 100%;
-
-    margin: 0;
-    padding: 0;
-
-    font-family: var(--serif);
-    font-weight: 400;
-
-    /* SMALL ENOUGH TO COMPLETELY FIT */
-    font-size: 70px ;
-
-    line-height: 0.9;
-
-    /* slightly tighter */
-    letter-spacing: -0.065em;
-
-    text-align: center;
-
-    white-space: nowrap;
-
-    position: static;
-    left: auto;
-    right: auto;
-
-    transform: none;
-  }
-}
 .hero-title-wrapper h1 {
-    font-size: 120px;
+    font-size: 100px;
 }
