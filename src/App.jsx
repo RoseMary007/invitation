@@ -231,7 +231,7 @@ function Hero() {
           <motion.h1
 
             initial={{
-              y: "110%"
+              y: "100%"
             }}
 
             animate={{
