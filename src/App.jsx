@@ -8,6 +8,7 @@ import {
 import {
   ArrowDown,
   ArrowUpRight,
+  Bold,
   MapPin
 } from "lucide-react";
 
@@ -1098,7 +1099,7 @@ function DressCode() {
           </p>
 
           <p className="dress-subtitle">
-            traditional attire in rich, dark ,loud tones
+            traditional attire in <strong> rich, dark, loud tones </strong> 
           </p>
 
         </Reveal>
