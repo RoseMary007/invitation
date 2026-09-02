@@ -1099,7 +1099,7 @@ function DressCode() {
           </p>
 
           <p className="dress-subtitle">
-            traditional attire in <strong> rich, dark, loud tones </strong> 
+            Traditional attire in <strong> rich, dark, loud tones </strong> 
           </p>
 
         </Reveal>
