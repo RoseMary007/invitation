@@ -1098,7 +1098,7 @@ function DressCode() {
           </p>
 
           <p className="dress-subtitle">
-            traditional attire in rich, dark tones
+            traditional attire in rich, dark ,loud tones
           </p>
 
         </Reveal>
@@ -1146,7 +1146,7 @@ function DressCode() {
         <Reveal delay={0.6}>
 
           <p className="dress-code-note">
-            DARK • ELEGANT • TRADITIONAL
+          •  DARK • RICH • TRADITIONAL •  
           </p>
 
         </Reveal>

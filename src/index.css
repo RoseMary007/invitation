@@ -1576,9 +1576,9 @@ img {
 
   margin-top: 7px;
 
-  font-size: 16px;
+  font-size: 30px;
 
-  letter-spacing: 0.25em;
+  letter-spacing: 0.2em;
 }
 
 .dress-description {
@@ -1593,6 +1593,15 @@ img {
   opacity: 0.65;
 }
 
+.dress-content .dress-code-note {
+  margin-top: 30px;
+
+  font-size: 12px;
+
+  letter-spacing: 0.28em;
+
+  opacity: 0.55;
+}
 
 /* ============================================================
    EVENT INFORMATION
@@ -1908,7 +1917,8 @@ img {
 
   .hero-title-wrapper h1 {
     font-size: 60px;
-    letter-spacing: -0.08em;
+    letter-spacing: 0.08em;
+
   }
 
   .hero-couple {
