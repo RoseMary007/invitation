@@ -1211,7 +1211,7 @@ img {
 
   margin: 14px 0 0;
 
-  font-size: 8px;
+  font-size: 12px;
 
   letter-spacing: 0.22em;
 
@@ -1236,7 +1236,7 @@ img {
 
   margin-top: 30px;
 
-  padding: 12px 16px;
+  padding: 25px 16px;
 
   border:
     1px solid rgba(40,37,34,0.4);
@@ -1245,7 +1245,7 @@ img {
 
   text-decoration: none;
 
-  font-size: 7px;
+  font-size: 12px;
 
   letter-spacing: 0.25em;
 
@@ -1572,7 +1572,7 @@ img {
 }
 
 .dress-subtitle {
-  font-family: var(--serif);
+  font-family:  "Didot", "Bodoni MT", "Cochin", "Georgia", serif;;
 
   margin-top: 7px;
 
