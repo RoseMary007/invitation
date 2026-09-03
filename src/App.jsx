@@ -959,7 +959,7 @@ function Venues() {
 
           <VenueCard
 
-            type="THE BETROTHAL"
+            type="THE WEDDING"
 
             venue={
               WEDDING.church.name
@@ -1099,7 +1099,7 @@ function DressCode() {
           </p>
 
           <p className="dress-subtitle">
-            Traditional attire in <strong> pastel shades </strong> 
+            Timeless & Contemporary Attire  in <strong> pastel shades </strong> 
           </p>
 
         </Reveal>
@@ -1147,7 +1147,7 @@ function DressCode() {
         <Reveal delay={0.6}>
 
           <p className="dress-code-note">
-          •  PASTEL • LIGHT • TRADITIONAL •  
+          •  SOFT HUES • GRACEFUL SILHOUETTES • TIMELESS ELEGANCE •  
           </p>
 
         </Reveal>
