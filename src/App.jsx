@@ -407,7 +407,7 @@ function Welcome() {
           >
 
             <span>
-              ENGAGEMENT
+              WEDDING DETAILS
             </span>
 
             <ArrowUpRight size={18} />
