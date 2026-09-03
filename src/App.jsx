@@ -23,22 +23,22 @@ const WEDDING = {
 
   bride: "ALEENA BABU",
 
-  date: "2026-09-27T15:00:00",
+  date: "2026-10-04T15:00:00",
 
-  dateText: "Sunday, 27th September 2026",
+  dateText: "Sunday, 4th October 2026",
 
   church: {
-    name: "St. Mary's Forane Church, Koratty",
-    address: "St. Mary's Forane Church, Koratty, Thrissur, Kerala, India, 680308",
+    name: "St. Mary's Forane Church, Chalakudy",
+    address: "St. Mary's Forane Church, Chalakudy, Thrissur, Kerala, India, 680308",
     map:
-      "https://www.google.com/maps/dir/9.8038172,76.6759214/St.+Mary's+Syro-Malabar+Church,+Koratty,+788W%2B6QJ,+Koratty,+Kerala+680308/@10.0341889,76.1815522,10z/data=!3m1!4b1!4m9!4m8!1m1!4e1!1m5!1m1!1s0x3b0803362e58aaa3:0x77abf233a79bd505!2m2!1d76.3467855!2d10.2652556?entry=ttu&g_ep=EgoyMDI2MDgyNi4wIKXMDSoASAFQAw%3D%3D"
+      "https://www.google.com/maps/dir//St.+Mary's+Syro-Malabar+Forane+Church,+Chalakkudy,+883Q%2B2P3,+Market+Rd,+Chalakudy,+Kerala+680307/@9.8038172,76.6759215,15z/data=!4m8!4m7!1m0!1m5!1m1!1s0x3b080240154b0e85:0x22fc86c44581173a!2m2!1d76.3393023!2d10.3025075?entry=ttu&g_ep=EgoyMDI2MDgzMS4wIKXMDSoASAFQAw%3D%3D"
   },
 
   reception: {
-    name: "Heartland Convention centre, Chalakudy",
-    address: "Heartland Convention centre, Chalakudy, Thrissur, Kerala, India, 680308",
+    name: "CIAL Convention centre, Nedumbassery",
+    address: "CIAL Convention centre, Airport Road, Nedumbassery, Kochi, Kerala, 683111",
     map:
-      "https://www.google.com/maps/dir//Kizhakuden's+HeartLand+Convention+Centre,+Athirapilly+road,+Koodapuzha,+Chalakudy,+Kerala+680721/@9.8038172,76.6759214,14z/data=!4m8!4m7!1m0!1m5!1m1!1s0x3b08030ad038013d:0xf0b6ccf724a81644!2m2!1d76.3525474!2d10.3139921?entry=ttu&g_ep=EgoyMDI2MDgyNi4wIKXMDSoASAFQAw%3D%3D"
+      "https://www.google.com/maps/dir//CIAL+TRADE+FAIR+%26+EXHIBITION+CENTRE,+Airport+Rd,+Nedumbassery,+Kerala+693111/@9.8038172,76.6759214,15z/data=!4m8!4m7!1m0!1m5!1m1!1s0x3b08061b468975ab:0xdeeba8a7f2436d7d!2m2!1d76.3762165!2d10.1585489?entry=ttu&g_ep=EgoyMDI2MDgzMS4wIKXMDSoASAFQAw%3D%3D"
   }
 
 };
@@ -247,7 +247,7 @@ function Hero() {
 
           >
 
-            BETROTHED
+            MARRIED
 
           </motion.h1>
 
@@ -977,7 +977,7 @@ function Venues() {
 
             time="3:00 PM"
 
-            date="Sunday, 27 September 2026"
+            date="Sunday, 4th October 2026"
 
           />
 
@@ -1006,7 +1006,7 @@ function Venues() {
 
             time="6:30 PM"
 
-            date="Sunday, 27 September 2026"
+            date="Sunday, 4th October 2026"
 
           />
 
@@ -1099,7 +1099,7 @@ function DressCode() {
           </p>
 
           <p className="dress-subtitle">
-            Traditional attire in <strong> rich, dark, loud tones </strong> 
+            Traditional attire in <strong> pastel shades </strong> 
           </p>
 
         </Reveal>
@@ -1147,7 +1147,7 @@ function DressCode() {
         <Reveal delay={0.6}>
 
           <p className="dress-code-note">
-          •  DARK • RICH • TRADITIONAL •  
+          •  PASTEL • LIGHT • TRADITIONAL •  
           </p>
 
         </Reveal>
