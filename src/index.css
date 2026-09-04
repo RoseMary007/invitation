@@ -1591,6 +1591,7 @@ img {
   line-height: 1.9;
 
   opacity: 0.65;
+  color:rgb(225, 46, 124)
 }
 
 .dress-content .dress-code-note {
@@ -1601,6 +1602,7 @@ img {
   letter-spacing: 0.28em;
 
   opacity: 0.55;
+  color:rgb(225, 46, 124);
 }
 
 /* ============================================================
