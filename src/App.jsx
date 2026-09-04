@@ -605,11 +605,13 @@ function CoupleImage() {
 
 
       <div className="photo-caption">
-        Love stories are narratives focused on romantic relationships, 
-        emotional connection, and the journey of two people falling or staying
-         in love.Key Types of Love StoriesClassic Literature: Timeless novels like 
-         Jane Austen's Pride and Prejudice explore social standing, wit, and personal
-          growth alongside romance.Tragic and Historical: Tales like Shakespeare's Romeo and Juliet or real-world epics focus on sacrifice, societal barriers, and deep loss.Modern and Contemporary: Everyday accounts of real people meeting, overcoming obstacles, and building long-term partnerships.Common Tro
+        It all started as two strangers introduced by mutual friends, 
+        sharing casual chuckles and late-night chats on Snapchat. 
+        Over time, those quirky, unexpected conversations grew into 
+        the sweetest part of our days, gently turning a quiet friendship 
+        into a deep love. Six years ago, we shared a quiet moment where we 
+        both just knew—we were meant to be together. Today, we are taking that 
+        beautiful feeling and making it a promise for a lifetime.
       </div>
 
     </section>
