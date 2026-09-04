@@ -1447,6 +1447,16 @@ img {
 
 }
 
+.small{
+font-family: var(--sans);
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: 0.32em;
+  opacity: 0.72;
+  margin-top: 14px;
+color: rgb(225, 46, 124)
+}
+
 
 /* ============================================================
    SMALL PHONES
@@ -1491,6 +1501,7 @@ img {
   }
 
 }
+
 
 
 
@@ -1556,6 +1567,9 @@ img {
   line-height: 0.85;
 
   letter-spacing: -0.06em;
+
+  color:rgb(225, 46, 124)
+
 }
 
 .dress-line {
@@ -1571,6 +1585,7 @@ img {
   font-family: var(--serif);
 
   font-size: 27px;
+  color:rgb(225, 46, 124)
 }
 
 .dress-subtitle {

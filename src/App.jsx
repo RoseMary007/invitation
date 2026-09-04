@@ -925,7 +925,7 @@ function Venues() {
 
           <Reveal>
 
-            <p className="eyebrow">
+            <p className="small">
               JOIN US
             </p>
 
@@ -1059,7 +1059,7 @@ function DressCode() {
 
         <Reveal>
 
-          <p className="eyebrow">
+          <p className="small">
             WHAT TO WEAR
           </p>
 
